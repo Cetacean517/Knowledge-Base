@@ -592,9 +592,3 @@ $ git push origin --tags
 $ git tag -d <tagname>
 $ git push origin :refs/tags/<tagname>
 ```
-
-#  实战常用
-
-## 1. github仓库clone 到本地
-
-​		任意文件夹下，打开git Bash: git clone + 仓库地址（https那个即可）
