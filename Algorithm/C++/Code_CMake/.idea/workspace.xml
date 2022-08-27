@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="Code_CMake" targetName="Code_CMake" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="aada4be1-a297-436b-93d9-417671f3009e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Python_leetcode/154_BinSearch_RotateArray.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Python_leetcode/4_BinSearch_TwoArray.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Python_leetcode/81_BinSearch_RotateArray.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Python_leetcode/template.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Code/Arrow.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Python_leetcode/SevenSixThree.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Python_leetcode/763.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Python_leetcode/SixNine(Bin_search).py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Python_leetcode/69_BinSearch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Python_leetcode/ThreeFour.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Python_leetcode/34.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Python_leetcode/TwoOneZeroZero.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../Python_leetcode/2100.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/.vs/LearnOpenMP/v16/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/.vs/LearnOpenMP/v16/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/.vs/LearnOpenMP/v16/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/.vs/LearnOpenMP/v16/Browse.VC.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/.vs/LearnOpenMP/v16/ipch/AutoPCH/cdb5caed9a4cef67/源.ipch" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/.vs/LearnOpenMP/v16/ipch/AutoPCH/cdb5caed9a4cef67/源.ipch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/Debug/LearnOpenMP.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/Debug/LearnOpenMP.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/Debug/LearnOpenMP.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/Debug/LearnOpenMP.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/Debug/LearnOpenMP.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/Debug/LearnOpenMP.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/LearnOpenMP.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/scoping.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/scoping.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/vc142.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/vc142.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/vc142.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/vc142.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/源.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/Debug/源.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/LearnOpenMP.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/LearnOpenMP.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/LearnOpenMP.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/LearnOpenMP.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/scoping.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/scoping.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/LearnOpenMP/LearnOpenMP/源.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/.vs/MatrixPi/v16/.suo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/.vs/MatrixPi/v16/Browse.VC.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/.vs/MatrixPi/v16/ipch/AutoPCH/adf3a24fb6159cf6/HELLO_OPENMP.ipch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/Debug/MatrixPi.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/Debug/MatrixPi.ilk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/Debug/MatrixPi.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/MatrixPi.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/MatrixPi.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/hello_openmp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/vc142.idb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/Debug/vc142.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/MatrixPi.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/MatrixPi.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/MatrixPi.vcxproj.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/MatrixPi/MatrixPi/hello_openmp.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/.vs/Demo1/v16/.suo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/.vs/Demo1/v16/Browse.VC.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/.vs/Demo1/v16/ipch/AutoPCH/b2b6d05ad3407043/OPENMP.ipch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/.vs/Demo1/v16/ipch/AutoPCH/e966f41d963cd1d3/OPENMP.ipch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Debug/Demo1.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Debug/Demo1.ilk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Debug/Demo1.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/CL.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/CL.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/CL.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/Demo1.lastbuildstate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/link.command.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/link.read.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/Demo1.tlog/link.write.1.tlog" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/OpenMP.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/vc142.idb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Debug/vc142.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Demo1.vcxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Demo1.vcxproj.filters" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/Demo1.vcxproj.user" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Professional Courses/Computer_Architecture/Tests/Test2_openMP/OpenMPHW/Demo1/OpenMP.cpp" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2021" />
+    <option name="minorVersion" value="3.4" />
+  </component>
+  <component name="ProjectId" id="27WEXJzf0yOKaYq4e9DJZIz8dZP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="cmake.loaded.for.project" value="true" />
+    <property name="structure.view.defaults.are.configured" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Code_CMake" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Code_CMake" TARGET_NAME="Code_CMake" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Code_CMake" RUN_TARGET_NAME="Code_CMake">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aada4be1-a297-436b-93d9-417671f3009e" name="Changes" comment="" />
+      <created>1649427480024</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1649427480024</updated>
+      <workItem from="1649427482408" duration="2389000" />
+      <workItem from="1649478105199" duration="1593000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ThreeFour.cpp</url>
+          <line>37</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
