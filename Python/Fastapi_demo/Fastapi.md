@@ -6,9 +6,9 @@ Pyantic: 一个基于python类型提示来定义数据验证，序列化和文�
 
 ​	类似于吧类型提示放到前后端接口中的应用。
 
-<img src="D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506093525903.png" alt="image-20220506093525903" style="zoom:30%;" />
+<img src=".\Notepic\image-20220506093525903.png" alt="image-20220506093525903" style="zoom:30%;" />
 
-# FASTAPI 学习笔记
+# I. FASTAPI 学习笔记
 
 ## Lesson1 FastAPI 安装
 
@@ -410,45 +410,45 @@ async def search(req: Request, keyword=Form(None)):
                                                "search_results": search_results})
 ```
 
-# Pydantic基础
+# II. Pydantic基础
 
 ### 1. 基础样例
 
-![image-20220506093919357](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506093919357.png)
+![image-20220506093919357](.\Notepic\image-20220506093919357.png)
 
 ### 2. 校验失败处理
 
-![image-20220506094149513](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506094149513.png)
+![image-20220506094149513](.\Notepic\image-20220506094149513.png)
 
 输出
 
-<img src="D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506094253807.png" alt="image-20220506094253807" style="zoom:33%;" />
+<img src=".\Notepic\image-20220506094253807.png" alt="image-20220506094253807" style="zoom:33%;" />
 
 pycharm 可以直接下载Pydantic插件
 
 ### 3. 模型类的属性和方法
 
-![image-20220506094748891](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506094748891.png)
+![image-20220506094748891](.\Notepic\image-20220506094748891.png)
 
-![image-20220506094831627](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506094831627.png)
+![image-20220506094831627](.\Notepic\image-20220506094831627.png)
 
 ### 4. 递归模型
 
-![image-20220506095305198](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506095305198.png)
+![image-20220506095305198](.\Notepic\image-20220506095305198.png)
 
 ### 5. ORM模型：从类实例创建符合ORM对象的模型
 
-![image-20220506095601512](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506095601512.png)
+![image-20220506095601512](.\Notepic\image-20220506095601512.png)
 
 orm_mode= True是为了调用后面的from_orm接口
 
-![image-20220506095754489](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220506095754489.png)
+![image-20220506095754489](.\Notepic\image-20220506095754489.png)
 
 ### 6. Pydantic 支持的字段类型
 
 ​	官方文档：https://pydantic-docs.helpmanual.io/usage/types/
 
-# 请求参数和验证
+# III. 请求参数和验证
 
 ## 1. 路径参数和数字校验
 
@@ -456,51 +456,51 @@ orm_mode= True是为了调用后面的from_orm接口
 
 查询参数：访问url 时，路径末尾跟 ? q = xx；设置时，在函数中直接加
 
-![image-20220508115532365](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508115532365.png)
+![image-20220508115532365](.\Notepic\image-20220508115532365.png)
 
 2）枚举类型参数
 
-![image-20220508121227985](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508121227985.png)
+![image-20220508121227985](.\Notepic\image-20220508121227985.png)
 
 3） 通过path parameters传递文件路径
 
-![image-20220508121421768](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508121421768.png)
+![image-20220508121421768](.\Notepic\image-20220508121421768.png)
 
 4）路径参数校验
 
 导入类：from fastapi import Path
 
-![image-20220508121619527](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508121619527.png)
+![image-20220508121619527](.\Notepic\image-20220508121619527.png)
 
-<img src="D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508121633956.png" alt="image-20220508121633956" style="zoom:33%;" />
+<img src=".\Notepic\image-20220508121633956.png" alt="image-20220508121633956" style="zoom:33%;" />
 
 5） 查询条数限制
 
-![image-20220508121904425](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508121904425.png)
+![image-20220508121904425](.\Notepic\image-20220508121904425.png)
 
 6）bool类型转换
 
-![image-20220508121916739](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508121916739.png)
+![image-20220508121916739](.\Notepic\image-20220508121916739.png)
 
 7）字符串验证
 
 导入类：from fastapi import Query
 
-![image-20220508122040900](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508122040900.png)
+![image-20220508122040900](.\Notepic\image-20220508122040900.png)
 
 ## 2. Cookie 和 Header 参数
 
-1. Cookie参数![image-20220508122757445](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508122757445.png)
+1. Cookie参数![image-20220508122757445](.\Notepic\image-20220508122757445.png)
 
 2. Header 参数
 
-   ![image-20220508123010686](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508123010686.png)
+   ![image-20220508123010686](.\Notepic\image-20220508123010686.png)
 
 # 路径操作配置
 
-![image-20220508123336476](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508123336476.png)
+![image-20220508123336476](.\Notepic\image-20220508123336476.png)
 
-# 依赖注入系统
+# IV. 依赖注入系统
 
 “依赖注入”是指在编程中，为保证代码成功运行，先导入所需要的依赖，如子函数，数据库连接等。
 
@@ -508,23 +508,23 @@ orm_mode= True是为了调用后面的from_orm接口
 
 ​	依赖的使用不区分同步和异步的情况。
 
-![image-20220508123948719](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508123948719.png)
+![image-20220508123948719](.\Notepic\image-20220508123948719.png)
 
 ## 2. 类作为依赖项（3种写法）
 
-![image-20220508195900862](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508195900862.png)
+![image-20220508195900862](.\Notepic\image-20220508195900862.png)
 
-![image-20220508200007891](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508200007891.png)
+![image-20220508200007891](.\Notepic\image-20220508200007891.png)
 
 ## 3. 子依赖
 
-![image-20220508201346785](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508201346785.png)
+![image-20220508201346785](.\Notepic\image-20220508201346785.png)
 
 ## 4. 路径操作装饰器中导入依赖
 
-![image-20220508195745241](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508195745241.png)
+![image-20220508195745241](.\Notepic\image-20220508195745241.png)
 
-# OAuth2.0的授权模式
+# V. OAuth2.0的授权模式
 
 ## OAuth2 密码模式和FastAPI的OAuth2PasswordBearer
 
@@ -536,7 +536,7 @@ OAuth2PasswordBearer：
 
 基于Password 和 Bearer token 的OAuth2认证：
 
-# 安全性
+# VI. 安全性
 
 ## Security - First Steps
 
@@ -636,11 +636,11 @@ scope
 - 它们通常用于声明特定的安全权限，例如：
   - `users:read` 或者 `users:write` 是常见的例子。
 
-# 中间件
+# VII. 中间件
 
 ## 1. 中间件
 
-![image-20220508204019479](D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508204019479.png)
+![image-20220508204019479](.\Notepic\image-20220508204019479.png)
 
 ## 2. 跨域资源共享
 
@@ -648,5 +648,105 @@ scope
 
 若设置同源请求，则跨域间不能进行随意的ajax请求。跨域通过CORS中间件处理。
 
-<img src="D:\Cetacean517\Cetacean_w\Learning\Professional Courses\Python\Fastapi_demo\Notepic\image-20220508204522913.png" alt="image-20220508204522913" style="zoom: 50%;" />
+<img src=".\Notepic\image-20220508204522913.png" alt="image-20220508204522913" style="zoom: 50%;" />
 
+
+
+# VIII. 部署 Deployment
+
+## 1. About FastApi version 版本问题
+
+> Learn more about it: [link](https://fastapi.tiangolo.com/deployment/versions/).
+
+### 1.1 固定版本 pin your fast api version
+
+1. 在项目根目录下，新建`requirement.txt` 。
+
+   ```markdown
+   // 版本= 0.45.0.
+   fastapi==0.45.0
+   
+   // 版本 在两者之间
+   fastapi>=0.45.0,<0.46.0
+   ```
+
+
+
+### 1.2 Deployments Concepts
+
+> Learn more: [link](https://fastapi.tiangolo.com/deployment/concepts/).
+
+- Security - HTTPS
+- Running on startup
+- Restarts
+  - 对于小错误，fast-api会给出错误提示，例如`500 Internal server...`。并且继续运行。
+  - 对于大型错误，导致`uvicorn`崩溃时，需要借助其他组件维护。
+- Replication (the number of processes running)
+- Memory
+- Previous steps before starting
+
+
+
+### 1.3 Fastapi in Containers - Docker
+
+> Learn more: [link](https://fastapi.tiangolo.com/deployment/docker/).
+>
+> You should have a directory structure like:
+>
+> .
+> ├── app
+> │   ├── __init__.py
+> │   └── main.py
+> ├── Dockerfile
+> └── requirements.txt
+
+1. **Pin the packages version in** `requirements.txt` .
+
+   For example, your `requirements.txt` could look like:
+
+   ```yaml
+   fastapi>=0.68.0,<0.69.0
+   pydantic>=1.8.0,<1.10.0,!=1.8.1,!=1.8
+   uvicorn>=0.15.0,<0.16.0
+   uvicorn
+   jieba == 0.42.1
+   spacy == 3.4.1
+   rake-nltk == 1.0.6
+   gensim == 3.8.1
+   ```
+
+2. **Create code.**
+
+3. **Create Dockerfile.** 
+
+   ```dockerfile
+   # Start from the official Python base image.
+   FROM python:3.9
+   
+   # Set the current working directory to /code. p.s. where to put app, and requirements.txt
+   WORKDIR /code
+   
+   # Copy the file with the requirements to the /code directory.
+   COPY ./requirements.txt /code/requirements.txt
+   
+   # Install the package dependencies in the requirements file.
+   RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+   
+   # Copy the ./app directory inside the /code directory.
+   COPY ./app /code/app
+   
+   # Set the command to run the uvicorn server.
+   CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+   ```
+
+4. **Build the Docker Image.**
+   - Go to the project directory (in where your `Dockerfile` is, containing your `app` directory).
+   - Build your FastAPI image: `docker build -t <name>`
+
+5. **Start the Docker Container.**
+
+6. docker run -d --name mycontainer -p 80:80 cetacean517/atf_search
+
+7. docker build -t cetacean517/atf_search .
+
+8. python -m uvicorn app.main:app --host 127.0.0.1 --port 80
