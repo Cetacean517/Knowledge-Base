@@ -11,26 +11,34 @@
 
  **Daily Use**
 
-| Software name | Url                              |      |
-| ------------- | -------------------------------- | ---- |
-| 网易云音乐    | https://music.163.com/#/download |      |
-| QQ            | https://im.qq.com/pcqq           |      |
-| Wechat        |                                  |      |
-| 火绒          |                                  |      |
-| Winrar        |                                  |      |
+| Software name | Url                              |
+| ------------- | -------------------------------- |
+| 网易云音乐    | https://music.163.com/#/download |
+| QQ            | https://im.qq.com/pcqq           |
+| Wechat        |                                  |
+| 火绒          |                                  |
+| Winrar        |                                  |
 
 **Work Use**
 
-| Software name     | Url                                                          |      |
-| ----------------- | ------------------------------------------------------------ | ---- |
-| Pycharm           | https://www.jetbrains.com/pycharm/                           |      |
-| InteliJ IDEA      | https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows |      |
-| Clion             |                                                              |      |
-| Typora            | https://typoraio.cn/                                         |      |
-| Git               |                                                              |      |
-| Clark for Windows | https://github.com/Fndroid/clash_for_windows_pkg             |      |
-| KeePass           | https://keepass.info/download.html                           |      |
-| Fork              |                                                              |      |
+| Software name     | Url                                                          |
+| ----------------- | ------------------------------------------------------------ |
+| Pycharm           | https://www.jetbrains.com/pycharm/                           |
+| InteliJ IDEA      | https://www.jetbrains.com/idea/download/download-thanks.html?platform=windows |
+| Clion             |                                                              |
+| Typora            | https://typoraio.cn/                                         |
+| Git               |                                                              |
+| Clark for Windows | https://github.com/Fndroid/clash_for_windows_pkg             |
+| KeePass           | https://keepass.info/download.html                           |
+| Fork              |                                                              |
+
+VS Code Configuration
+
+| Plugin Name          | Functions                       |
+| -------------------- | ------------------------------- |
+| Chinese (Simplified) | 中文翻译                        |
+| GitLens              | 显示git commit的时间以及细节... |
+|                      |                                 |
 
 
 
