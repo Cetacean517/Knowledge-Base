@@ -61,8 +61,72 @@
 | `src/test`                    | `mvnw` / `mvnw.cmd`           | maven code 用于没有下载maven                                 |
 | `src/test`                    | `pom.xml`                     | 依赖配置文件                                                 |
 
-### 1.5 Inversion of Control
 
-- Container maintains your class dependencies
+
+### 1.5 Inversion of Control 控制反转
+
+- Container maintains your clash dependencies
 - Objects injected at runtime or startup time
 - An object accepts the dependencies for construction instead of constructing them
+
+#### Traditional Dependency Management
+
+<img src="`Spring Framework`_Notepic/image-20220929143835800.png" alt="image-20220929143835800" style="zoom:33%;" />
+
+a Main method need to create several classes at first, and config them of a lot depths.
+
+#### loC Container Management
+
+<img src="`Spring Framework`_Notepic/image-20220929150353689.png" alt="image-20220929150353689" style="zoom: 33%;" />
+
+Main --- trigger ---> loC Container, and let loC Container to instantiation (实例化) the class.
+
+
+
+### 1.6 Annotations
+
+#### What are Annotations
+
+- Native support in Java
+- Metadata for your code
+- Often used for compiler or runtime instructions. e.g.`@test`
+- Great leverage point for pointcuts.
+
+#### Proxies
+
+- Beans in Bean Factory are proxied 
+- Annotations drive proxies
+- Annotations are easy extension points, for your own abstracts too
+- Methods calling order matters. (important!!! proxy class can only called with internal method/ class local method)
+
+
+
+## 2. Data Access in Spring
+
+### 2.1 Spring Data
+
+#### What is Spring Data?
+
+- Provides a common set of interfaces, based on JPA
+- Provides a common ***naming convention （命名规范）***  
+- Provides aspected behavior
+- Provides Repository and Data Mapping convention(数据映射规范)
+
+#### Benefits of Spring Data
+
+- Remove boilerplate code (模板代码)
+- Allows for swapping datasources easier. (from ***Poc= proof of concept 概念验证*** to production data)
+- Allows to focus on business logic
+
+### Key Components
+
+- **Repository Interface** = *an interface that leverages proxies to build the actual base CRUD methods.*
+- **Entity Object** = the DTO for the data layer
+- **DataSource** = auto trigger by Spring
+
+
+
+### 2.2 Using an Embedded Database
+
+
+
