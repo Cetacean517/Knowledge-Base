@@ -492,11 +492,36 @@ public static void main(String[] args) {
 
 ### 4.1 Modules
 
-Module can break JDK into small sections. 
+Modular system has been used to break up the JDK itself. Also, can be used for creating Java applications.
+
+**What is a module?**
+
+- Modules contain code, and maybe other resources.
+- Modules must have unique names.
+- Module contains some information describing itself.
+
+> By default module can not be accessed from outside, even to public class.
 
 ### 4.2 Create a module
 
+Create a  `module-info.java` file to requires other models, or export your module.
+
+ <img src="Notepic/image-20221029000545114.png" alt="image-20221029000545114" style="zoom: 67%;" />
+
+```java
+module HelloWorld {
+    
+    requires java.desktop;
+    exports helloworld;
+    
+}
+```
+
+
+
 ### 4.3 Modular structure
+
+
 
 ### 4.4 Multiple modules
 
