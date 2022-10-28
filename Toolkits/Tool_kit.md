@@ -53,3 +53,5 @@ VS Code Configuration
   - 文件资源管理器选项
   
     <img src="./Notepic/image-20221016115217504.png" alt="image-20221016115217504" style="zoom: 33%;" />
+
+- 设置系统不检测更新：https://jingyan.baidu.com/article/4d58d5411e35de9dd4e9c0cb.html
