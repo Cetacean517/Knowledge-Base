@@ -202,3 +202,303 @@ Wildcards support to pass a certain type of arguments to a method.
 }
 ```
 
+
+
+## II. Advanced Data Structures
+
+### 2.1 Collection Framework
+
+Collections enable you to get objects together in a container, which you can iterate over.
+
+**Key factors to choose a collection**
+
+- **Order**: Is order important?
+- **Duplicated**: Are duplicated allowed?
+- **Speed**: How fast it will be to perform operations?
+
+**Layer of Collections**
+
+<img src="Notepic/image-20221027164241887.png" alt="image-20221027164241887" style="zoom: 33%;" />
+
+- Collection implement Iterable. It declares the `forEach` method.
+- Collection interface declares all the methods that every collection must have. `add`, `remove`, `isempty`...
+
+- 在具体实现类前一层，还有Set, List, Queue ...
+
+​		**Sets**:  No duplicated, Unordered
+
+​		**Lists**:  Allow duplicated, Ordered
+
+​		**Queues**:  FIFO
+
+​		**MAP**:  Does not extend Collection interface, Key-value pair
+
+### 2.2 LinkedList
+
+1. Quick in Insert, removing elements
+2. Take more memory,读取某个位置的元素速率慢。
+
+```java
+LinkedList<String> myList = new LinkedList();
+myList.add("a");
+myList.add("b");
+myList.add(1,"c");	// 在a后添加c 
+System.out.println(myList); // acb
+myList.remove("b"); // a, c
+```
+
+
+
+### 2.3 Queue
+
+1. Can you LinkedList to achieve it.
+
+```java
+LinkedList<T> queue = new LinkedList();
+queue.add("A"); // 入队
+queue.add("B");
+a = queue.poll; // 出队， 如果出队的元素是一个Class，可以调用它自身方法。
+```
+
+
+
+### 2.4 HashMap
+
+1. Element not in order.
+2. Key should be unique. **IF add ONE KEY with two value, only the last will be saved.**
+3. Null can be key.
+4. Check / Delete element by key.
+5. Clear all elements
+
+```java
+HashMap<String,Integer> phonebook = new HashMap<>();
+phonebook.add("name1",123456);
+phonebook.add("samename",234567);
+phonebook.add("samename",456789); 	// only save "samename":456789
+phonebook.add(null,1234567);		// null can be key
+if(phonebook.containsKey("samename")){
+    phonebook.remove("samename");	// remove an element by key
+}
+phonebook.clear()					// clean all elements
+```
+
+
+
+### 2.5 LinkedHashMap
+
+1. Element in order.
+
+2. Available to specify the retrieve order : by alter the constructor.
+
+   1. by added in order
+   2. by accessed order
+
+3. `LinkedHashMap( int initialCapacity, float loadFactor,boolean accessOrder)`
+
+   1. **initialCapacity** : set initial capacity of the map.    *`default = 16`*
+
+   2. **loadFactor** : how full the map can be, before it is made bigger.   *`default = 0.75f `*
+
+       If `initailCapacity` = 4, then the map will get bigger when there are 3 entries in the map.
+
+   3. **accessOrder** : which mode to retrieve entries
+
+      1. false = added order
+      2. true = access order, the lastest accessed entry will return in the last.
+
+      > 最近处理的，最后返回。
+
+
+
+## III. Functional Programming
+
+> Introduce in Java 8
+
+### 3.1 Functional Interface
+
+***Lambda*** represents the implementation (执行) of a *functional interface (函数接口）* .
+
+***Functional interface*** is an interface that has only one abstract method.
+
+> 函数接口：仅有一个抽象方法的接口。
+
+- allows Java programmers to pass code around as data.
+
+```java
+@FunctionalInterface
+public interface GreetingMessage {
+    public abstract void greet(String name);
+}
+```
+
+
+
+### 3.2 Lambda
+
+Lambda provides short and simple way to implement functional interface.
+
+Without Lambda, using functional interface is long and messy.
+
+```java
+    public static void main(String[] args) {
+        GreetingMessage gm = new GreetingMessage() {
+            @Override
+            public void greet(String name) {
+                System.out.println("Hello "+name);
+            }
+        };
+        gm.greet("cetacean");
+    }
+```
+
+With Lambda, code are simple and short.
+
+```java
+    public static void main(String[] args) {
+        GreetingMessage gm = (String name) -> {
+            System.out.println("Hello "+name);
+        };
+        gm.greet("cece");
+    }
+```
+
+
+
+### 3.3 Methods references
+
+If you have a lambda expression that passes in a variable and then calls a method on that variable, you can replace it with a method reference.
+
+> Lambda 用于省略复杂的模板结构，定制化实例方法。重点在补充实例化方法。
+>
+> methods references 用于单一参数（类...)，方法也封装好的，省略整体结构。故仅强调参数类型以及参数调用的函数名。
+
+Without method refernece.
+
+```java
+    public static void main(String[] args) {
+
+        Square s = new Square(4);		// new Square instance
+
+        // can use method reference insteand
+        Shapes shapes = (Square square) -> {	// call funtioncal interface: Shape, passing square
+            return square.calculateArea();	// return Squeare function result
+        };
+
+        System.out.println("Area: " + shapes.getArea(s));
+
+    }
+```
+
+With method refercne.
+
+```java
+    public static void main(String[] args) {
+
+        Square s = new Square(4);
+
+        // use method reference
+        Shapes shapes = Square::calculateArea; 
+
+        System.out.println("Area: " + shapes.getArea(s));
+
+    }
+```
+
+
+
+### 3.4 Streams
+
+***Streams*** provide a clean and simple way to iterate over a collection in Java. Instead of using a ***forEach loop***, streams *<u>allow functional programming techniques to be used</u>*.
+
+**1. forEach loop** :
+
+- Use external iteration. 
+- An iterator object is created, it controls the iteration process. 
+- Iterator object does execution separately, and checks the next item. It stops when it reaches the end.
+
+> 使用迭代器，对于每一项执行操作。
+
+```java
+for (Book book : books){
+    if(book.getAuthor().startsWith("J")){
+        System.out.println(book.toString());
+    }
+}
+```
+
+  **External iteration**
+
+- Hard to write parallel iterations
+- Requires boilerplate code
+- Difficult to read meaning
+- Hard to abstract away from behavior
+
+**2. Stream**
+
+- Use internal iterator.
+- Get two methods: lazy method & eager method.
+
+```java
+books.stream().filter(book ->{
+    return book.getAuthor().startswith("J");})
+    // more filters
+    // more filters
+    .forEach(System.out::println);
+```
+
+- stream() : return a Stream Object, it's an interface that contains a sequence of elements from the collection we called the method on.
+- filter(): lazy method. Check the condition, if meets adds it to stream.
+- forEach(): eager method. Do the action for the whole stream.
+
+**Examples:**
+
+Stream in Java
+
+```java
+    public static void main(String[] args) {
+        
+        ArrayList<Book> books = populateLibrary();
+        books.stream().filter(book -> {
+            return book.getAuthor().startsWith("A");
+        }).filter(book -> {
+            return book.getTitle().startsWith("M");
+        }).forEach(System.out::println);
+        
+    }
+```
+
+Parallel Stream in Java
+
+- Optimize efficiency, only when deal with *<u>huge amount of data</u>* and the machine with <u>*several cores*</u>.
+
+```java
+public static void main(String[] args) {
+    
+    ArrayList<Book> books = populateLibrary();
+    
+    // change the method name
+    books.parallelstream().filter(book -> {
+        return book.getAuthor().startsWith("A");
+    }).forEach(System.out::println);
+    
+}
+```
+
+
+
+## 4. Modular Programming
+
+> Introduced in Java 9
+
+### 4.1 Modules
+
+Module can break JDK into small sections. 
+
+### 4.2 Create a module
+
+### 4.3 Modular structure
+
+### 4.4 Multiple modules
+
+### 4.5 Run modules from command line
+
