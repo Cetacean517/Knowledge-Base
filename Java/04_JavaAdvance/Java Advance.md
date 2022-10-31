@@ -486,7 +486,7 @@ public static void main(String[] args) {
 
 
 
-## 4. Modular Programming
+## IV. Modular Programming
 
 > Introduced in Java 9
 
@@ -521,9 +521,76 @@ module HelloWorld {
 
 ### 4.3 Modular structure
 
+Multi-module structure.
 
+<img src="Notepic/image-20221031175736261.png" alt="image-20221031175736261" style="zoom: 67%;" /><img src="Notepic/image-20221031175834566.png" alt="image-20221031175834566" style="zoom: 67%;" />
 
 ### 4.4 Multiple modules
 
+Multiple modules can help you achieve encapsulation in an easy way.
+
+For example, we have a project structure like this
+
+```java
+|--- bookingsystem
+	|--- classes
+    	|--- employees
+    		|--- Hairdresser.java
+    	|--- scheduling
+    		|--- Scheduler.java
+    	|--- module-info.java		// only exports scheduling
+    |--- tests
+|--- customer
+	|--- classes
+    	|--- customers
+    		|--- Customer.java
+    	|--- module-info.java		// imports bookingsystem, but can only use function in scheduling
+    |--- tests
+```
+
+The example successfully hide the Hairdresser, even the whole module is imported by customer module.
+
 ### 4.5 Run modules from command line
+
+Compiling and running modular from command line.
+
+1. Create a module with a file structure like this:
+
+   ```cmd
+   |--- ModularExample
+   	|--- src
+       	|--- roses				// module name
+       		|--- com
+       			|--- cetacean
+       				|--- sunny
+       					|--- sayhi.java
+       		|--- module-info.java		
+   ```
+
+2. Open ***command prompt*** in `Modular Example`.
+
+3. Compile java module
+
+   ```cmd
+   javac -d output/roses src/roses/com/cetacean/sunny/sayhi.java src/roses/module-info.java
+   ```
+
+   - **`-d`** : location to place the output compiled files, the name should be the same as the compiled module.
+
+     > In example, compiled java will be placed at `ModularExample/output`
+
+   -  `filepath` : add path of java file needed to be compile, add path of module-info
+
+4. Run  java module
+
+   ```java
+   java --module-path output --module roses/com.cetacean.sunny.sayhi
+   ```
+
+   - **`--module-path / -p`**:  path of the directory that contains my compiled module
+   - **`--module / -m`**: name of the module
+   
+    ```cmd
+    java - output -m roses/com.cetacean.sunny.sayhi
+    ```
 
