@@ -502,6 +502,8 @@ Modular system has been used to break up the JDK itself. Also, can be used for c
 
 > By default module can not be accessed from outside, even to public class.
 
+
+
 ### 4.2 Create a module
 
 Create a  `module-info.java` file to requires other models, or export your module.
@@ -524,6 +526,8 @@ module HelloWorld {
 Multi-module structure.
 
 <img src="Notepic/image-20221031175736261.png" alt="image-20221031175736261" style="zoom: 67%;" /><img src="Notepic/image-20221031175834566.png" alt="image-20221031175834566" style="zoom: 67%;" />
+
+
 
 ### 4.4 Multiple modules
 
@@ -549,6 +553,8 @@ For example, we have a project structure like this
 ```
 
 The example successfully hide the Hairdresser, even the whole module is imported by customer module.
+
+
 
 ### 4.5 Run modules from command line
 
@@ -594,3 +600,208 @@ Compiling and running modular from command line.
     java - output -m roses/com.cetacean.sunny.sayhi
     ```
 
+
+
+## V. Multithreading in Java
+
+### 5.1 Introduction
+
+> Multi-threading is closer than multi-processing.
+
+- a process can have several threads working at the same time.
+
+- Each thread has its **own stack** and **own local variables**.
+
+- Threads **share memory** with other threads. ==> All of the threads have the same access to **global variables**.
+
+  <img src="Notepic/image-20221101171805256.png" alt="image-20221101171805256" style="zoom: 25%;" />
+
+**When to use Threads**
+
+- Blocking I/O
+
+  > User available to do things when one threads is blocked by I/O.
+
+- GUI applications
+
+  > To improve responsiveness of the program. e.g. use AWT / Swing.
+
+- Independent tasks
+
+
+
+### 5.2 Thread class
+
+> Run thread extend Thread Class.
+
+`ThreadExample` Class:
+
+```java
+public class ThreadExample extends Thread{
+    
+    @Override
+    public void run{
+        int i = 1;
+        while(i <100){
+            System.out.println(i + " " + this.getName());
+            i++;
+        }
+    }
+}
+```
+
+- Use by **extends `Thread` Class.**
+- Any calls you want the thread to execute goes in the **`run` method.**
+- `this.getName()` : get name of current thread.
+
+`Main` Class:
+
+```java
+public class Main{
+    public static void main(String[] args){
+        System.out.println(Thread.activeCount());
+        
+        ThreadExample thread1 = new ThreadExample();		// new a thread and wait
+        thread.setName("threadname");
+        thread1.start();									// run the thread
+    }
+}
+```
+
+- `Thread.activeCount()`: a static method of `Thread` Class, to show how many threads are running.
+- `thread.start();` Run a thread.
+- `thread.setName("threadname")`: Set name for thread.
+
+
+
+### 5.3 Runnable interface
+
+> Run thread implements Runnable.
+
+**Benefits than `extend Thread`**
+
+- Available to extend other class. (In Java, one class can only extend one class.)
+
+`RunnableExample` Class :
+
+```java
+public class RunnableExample implements Runnable {
+    
+    @Override
+    public void run{
+        int i = 1;
+        while(i <100){
+            System.out.println(i + " " + Thread.currentThread().getName);
+            i++;
+        }
+    }
+}
+```
+
+- Use by implements Runnable.
+- `Thread.currentThread().getName()` : get name of current thread.
+
+`Main` Class:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // 1. create a thread with implemented class RunnableExample 
+        Thread thread1 = new Thread(new RunnableExample());
+        thread1.start();
+
+        // 2. create a thread with Runnable and override
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 6;
+                while (i <= 10) {
+                    System.out.println(i++ + " " + Thread.currentThread().getName());
+                }
+            }
+        });
+        thread2.start();
+
+        // 2. create a thread with Runnable and override and lambda
+        Thread thread3 = new Thread(() -> {
+            int i = 6;
+            while (i <= 10) {
+                System.out.println(i++ + " " + Thread.currentThread().getName());
+            }
+        });
+        thread3.start();
+    }
+}
+```
+
+- Create by constructor of Thread, which takes a runnable as an argument.
+
+
+
+### 5.4 Synchronized methods
+
+- Allow only one thread enter the method at a time.
+- Add `synchronized` to method signature.
+
+> 解决多线程同时使用一个方法造成的冲突，例：脏读。
+
+```java
+static synchronized void withdraw(BankAccount account, int amount){
+    //...
+};
+```
+
+
+
+### 5.5 Avoiding thread deadlock
+
+deadlock: two or more threads get blocked forever.
+
+> e.g. Two threads are both waiting for resources held by each other.
+
+```java
+public class Kitchen {
+
+    public static Object spoon = new Object();
+    public static Object bowl = new Object();
+
+    public static void main(String args[]) {
+        
+        // Situation1 : cook1 got a spoon and wait for a bowl
+        Thread cook1 = new Thread(() -> {
+            synchronized (spoon) {
+                System.out.println("Cook1: Holding the spoon...");
+                System.out.println("Cook1: Waiting for the bowl...");
+
+                synchronized (bowl) {
+                    System.out.println("Cook1: Holding the spoon and the bowl.");
+                }
+            }
+        });
+        
+        // Situation2 : cook2 got a bowl and wait for a spoon
+        Thread cook2 = new Thread(() -> {
+            synchronized (bowl) {
+                System.out.println("Cook2: Holding the bowl...");
+                System.out.println("Cook2: Waiting for the spoon...");
+
+                synchronized (spoon) {
+                    System.out.println("Cook1: Holding the spoon and the bowl.");
+                }
+            }
+        });
+                
+        cook1.start();
+        cook2.start();
+        
+    }
+```
+
+- **synchronized block / statement**: a section of codes that only one thread can enter at a time. You can have a synchronized block inside a non synchronized method. 
+
+- **monitor object**: the object in brackets. If a thread is inside the synchronized block, no other thread can do anything with that object.
+
+**Solutions to solve deadlock**
+
+- avoid using nested structure
+- make them ask resources type in the same order.
