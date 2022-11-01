@@ -594,3 +594,80 @@ Compiling and running modular from command line.
     java - output -m roses/com.cetacean.sunny.sayhi
     ```
 
+
+
+## V. Multithreading in Java
+
+### 5.1 Introduction
+
+> Multi-threading is closer than multi-processing.
+
+- a process can have several threads working at the same time.
+
+- Each thread has its **own stack** and **own local variables**.
+
+- Threads **share memory** with other threads. ==> All of the threads have the same access to **global variables**.
+
+  <img src="Notepic/image-20221101171805256.png" alt="image-20221101171805256" style="zoom: 25%;" />
+
+**When to use Threads**
+
+- Blocking I/O
+
+  > User available to do things when one threads is blocked by I/O.
+
+- GUI applications
+
+  > To improve responsiveness of the program. e.g. use AWT / Swing.
+
+- Independent tasks
+
+### 5.2 Thread class
+
+Thread can be used in two ways in Java.
+
+**Method I**: 
+
+`ThreadExample` Class:
+
+```java
+public class ThreadExample extends Thread{
+    
+    @Override
+    public void run{
+        int i = 1;
+        while(i <100){
+            System.out.println(i + " " + this.getName());
+            i++;
+        }
+    }
+}
+```
+
+- Use by **extends `Thread` Class.**
+- Any calls you want the thread to execute goes in the **`run` method.**
+- `this.getName()` : get name of current thread.
+
+`Main` Class:
+
+```java
+public class Main{
+    public static void main(String[] args){
+        System.out.println(Thread.activeCount());
+        
+        ThreadExample thread1 = new ThreadExample();		// new a thread and wait
+        thread.setName("threadname");
+        thread1.start();									// run the thread
+    }
+}
+```
+
+- `Thread.activeCount()`: a static method of `Thread` Class, to show how many threads are running.
+- `thread.start();` Run a thread.
+- `thread.setName("threadname")`: Set name for thread.
+
+### 5.3 Runnable interface
+
+### 5.4 Synchronized methods
+
+### 5.5 Avoiding thread deadlock
