@@ -608,7 +608,9 @@ Compiling and running modular from command line.
 
 > Multi-threading is closer than multi-processing.
 
-- a process can have several threads working at the same time.
+- A process can have several threads working at the same time.
+
+- A thread makes use (利用) of the CPU core inside a computer.
 
 - Each thread has its **own stack** and **own local variables**.
 
@@ -805,3 +807,227 @@ public class Kitchen {
 
 - avoid using nested structure
 - make them ask resources type in the same order.
+
+
+
+## VI. Input and Output (I/O)
+
+### 6.1 Understand I/O
+
+Streams are a way of reading data or writing data.
+
+**Uses of Streams**
+
+- Reading and writing files in a program.
+- Taking user input from the console.
+- Communicating through sockets
+
+**Introduction**
+
+- A stream is a flow of data, and can only go in one direction.
+- Output streams write out data; Input streams read in data.
+- Abstract classes of Stream
+  - `InputStream`, `OutputStream`. (move bytes) 
+  - `Readers`, `Writers`. （move characters / uni-code characters ... )
+- `InputSream` implements
+  - `FileInputStream`: reading files.
+  - `ByteArrayInputStream`: reading bytes.
+  - `FilterInputStream`
+  - ...
+- `OutputStream` implements
+  - `FileOutputStream`: writing out files.
+  - `ByteArrayOutputStream`: writing out bytes.
+
+### 6.2 Reading console input with a scanner
+
+Scanners works with primitive type (All of the built-in data types in Java, e.g. ints, longs, floats, ...)
+
+**Read console with prompt for each**
+
+```java
+public class PersonCreator {
+    public static void main(String[] args) {    
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the name: ");
+        String name = scanner.next();
+        System.out.print("Enter the age: ");
+        int age = scanner.nextInt();
+        System.out.print("Enter the phone number: ");
+        Long phoneNumber = scanner.nextLong();
+        Person person = new Person(name, age, phoneNumber);
+    }
+}
+```
+
+- `System.in`:  an input stream used for reading standard input.
+- `scanner.next`():  finds and returns the next token from the scanner, which is what the user has entered.
+
+**Read console with prompt for all** 
+
+```java
+public class PersonCreator {
+    public static void main(String[] args) {    
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the name, age and phone number: ");
+        String name = scanner.next();
+        int age = scanner.nextInt();
+        Long phoneNumber = scanner.nextLong();
+        Person person = new Person(name, age, phoneNumber);
+    }
+}
+```
+
+
+
+### 6.3 Reading files with BufferedReader
+
+`BufferedReader`: allow you to read lines of characters, and will work with multiple input encodings.
+
+```java
+public class BufferedReaderExample {
+
+    public static void main(String[] args) {
+        // 1. create a File
+        File myFile = new File("example.txt");
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(myFile));
+            String line;
+            while((line = reader.readLine()) != null){
+                System.out.println(line);
+            }
+        } catch (IOException e){
+            System.out.println(e);
+        }
+    }
+}
+```
+
+- `IOException`: catch all exception related to IO.
+- `readline()`: read line of the file.
+
+**Scanner vs BufferedReader**
+
+| Scanner                         | BufferedReader                                     |
+| ------------------------------- | -------------------------------------------------- |
+| Treat each section as a  token. | Return a continuous stream.                        |
+| Simpler and shorter             | Synchronized, can be safely used in multi-threads. |
+
+
+
+### 6.4 try-with-resources with I/O
+
+Using try-with-resources makes sure that all resources are closed for me.
+
+Objects that implement the auto-closable interface are resources. 
+
+> e.g. BufferedReader() and StringWriter()
+
+```java
+public class TryWithResourcesExample {
+    public static void main(String[] args) {
+        // put resources in try head
+        try(BufferedReader reader = new BufferedReader(new StringReader("Hello World"));
+                StringWriter writer = new StringWriter();) {
+            writer.write(reader.readLine());
+            System.out.println(writer.toString());
+        } catch (IOException ioe) {
+        }
+    }
+}
+```
+
+
+
+## 7. Working with Files and Directories
+
+### 7.1 Creating a new file
+
+Create a new file, once created it will not be created again.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // 1. Create a File Object
+        File myFile = new File("demo.txt");
+        try{
+        // 2. Create a new File, once exsits will not create again.
+            boolean created = myFile.createNewFile();
+            System.out.println(created);
+        }catch (IOException ioe){
+
+        }
+    }
+}
+```
+
+
+
+### 7.2 Working with directories
+
+`FilenameFilter` : a functional interface to filter filename.
+
+```java
+public static void main(String[] args) {
+    // filter function
+    FilenameFilter filter = (file, fileName) ->{
+        return fileName.contains(".");
+    };
+
+    // 1. get all files from root directory
+    String[] contents = new File(".").list();
+    for(String file: contents) {
+        System.out.println(file);
+    }
+    // 2. make a new direcotry
+    new File("myDirectory").mkdir();
+}
+```
+
+
+
+### 7.3 Using the Path class
+
+Path class is the best way to move, copy and delete files.
+
+```java
+public static void main(String[] args) {
+    // 1. delete file if exists
+    Path path = Paths.get("myDirectory");
+    try {
+        Files.deleteIfExists(path);
+    } catch (IOException e) {
+    }
+
+    Path path2 = Paths.get("C:\\Users\\I528407\\Desktop\\test");
+    System.out.println(path2.getFileSystem());      // sun.nio.fs.WindowsFileSystem@677327b6
+    System.out.println(path2.getParent());          // C:\Users\I528407\Desktop
+    System.out.println(path2.getRoot());            // C:\
+    System.out.println(path2.getFileName());        // test
+}
+```
+
+
+
+### 7.4 Copying files with the Path class
+
+Copy methods of File class has options to specify how the copy should be done.
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        // 1.create pathname
+        Path source = Paths.get("example.txt - Shortcut.lnk");
+        Path dist = Paths.get("new.txt");
+        
+        // 2. copy file and set options
+        try {
+            Files.copy(source,dist,REPLACE_EXISTING,NOFOLLOW_LINKS);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+- `REPLACE_EXISTING`:  replace existing file with the same name.
+- `NOFOLLOW_LINKS`: copy all the attributes of the file.
