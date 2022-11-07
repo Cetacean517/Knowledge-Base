@@ -132,6 +132,23 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 
 ### 2.2 Using an Embedded Database
 
+```
+|---learning-spring
+	|---bin
+ 		|---data.sql
+    	|---shcema.sql
+    	|---start_postgres.sh
+ 	|---src
+ 		|---main
+ 			|---java
+ 				|---com.xxx...
+ 					|---Application
+ 			|---resources
+ 		|---test
+```
+
+
+
 1. Create sql
 
    bin -- set `sql` files and `start_postgres.sh`.
@@ -176,7 +193,51 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 
 ### 2.3 Spring Data Repositories
 
+1. Create new directory data : `src/main/java/com/frankmoley/lil/learningspring/data`
 
+2. Create new class in data: Room Class
+
+   ```java
+   package com.frankmoley.lil.learningspring.data;
+   
+   import javax.persistence.*;
+   
+   @Entity
+   @Table(name="ROOM")
+   public class Room {
+       @Id
+       @GeneratedValue(strategy = GenerationType.AUTO)
+       @Column(name = "ROOM_ID")
+       private long id;
+       @Column(name = "NAME")
+       private String name;
+       @Column(name = "ROOM_NUMBER")
+       private String roomNumber;
+       @Column(name = "BED_INFO")
+       private String bedINfo;
+       
+       // getters and setters
+       
+       // override toString
+   }
+   ```
+   
+   - `@Table(name="")`: Define table name based on the schema.
+   - `GeneratedValue(strategy = GenerationType.AUTO)` : default strategy.
+   - 
+
+**Reference SQL**
+
+ ```sql
+ CREATE TABLE ROOM(
+     ROOM_ID BIGSERIAL PRIMARY KEY,
+     NAME VARCHAR(16) NOT NULL,
+     ROOM_NUMBER CHAR(2) NOT NULL UNIQUE,
+     BED_INFO CHAR(2) NOT NULL
+   );
+ ```
+
+   
 
 
 
