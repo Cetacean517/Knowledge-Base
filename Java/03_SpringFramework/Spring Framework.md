@@ -75,13 +75,13 @@ Spring boot Key Aspects
 
 **Traditional Dependency Management**
 
-<img src="`Spring Framework`_Notepic/image-20220929143835800.png" alt="image-20220929143835800" style="zoom:33%;" />
+<img src="Notepic/image-20220929143835800.png" alt="image-20220929143835800" style="zoom:33%;" />
 
 a Main method need to create several classes at first, and config them of a lot depths.
 
 **loC Container Management**
 
-<img src="`Spring Framework`_Notepic/image-20220929150353689.png" alt="image-20220929150353689" style="zoom: 33%;" />
+<img src="Notepic/image-20220929150353689.png" alt="image-20220929150353689" style="zoom: 33%;" />
 
 Main --- trigger ---> loC Container, and let loC Container to instantiation (实例化) the class.
 
