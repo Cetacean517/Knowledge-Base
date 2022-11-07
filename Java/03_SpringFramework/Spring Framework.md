@@ -132,9 +132,51 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 
 ### 2.2 Using an Embedded Database
 
+1. Create sql
+
+   bin -- set `sql` files and `start_postgres.sh`.
+
+2. Add pom dependencies
+
+   Add `jpa`  and `h2database` , version need not to be specify, because the parent pom will take care of it.
+
+   ```xml
+   <dependencies>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+       </dependency>
+    
+       <-->Add two new dependencies </-->   
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-data-jpa</artifactId>
+       </dependency>
+       <dependency>			
+           <groupId>com.h2database</groupId>
+           <artifactId>h2</artifactId>
+       </dependency>
+       ...
+   </dependenciestyou
+   ```
+
+3. Run maven command, to install dependencies.
+
+4. Add info to application.properties
+
+   ```properties
+   logging.level.org.springframework.jdbc.datasource.init.ScriptUtils=debug
+   spring.jpa.hibernate.ddl-auto=none
+   ```
+
+   - line 1: set log to debug level
+   - line 2: avoid hibernate auto clean the schema and data we generate by hand , and auto generate a new schema to take control of it.
+
+    
+
+### 2.3 Spring Data Repositories
 
 
-### 2.3 Repositories
 
 
 
@@ -142,7 +184,11 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 
 
 
+
+
 ### 2.5 Build an additional repository
 
-### 
+
+
+
 
