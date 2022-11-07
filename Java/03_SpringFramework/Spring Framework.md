@@ -1,16 +1,16 @@
 # Spring Framework
 
-## 1. Getting started with Spring Boot
+## I. Getting started with Spring Boot
 
 ### 1.1 Introduction to Spring
 
-#### Spring Framework
+**Spring Framework**
 
 - Providing comprehensive infrastructural
 - OOP Best practices built in
 - DRY(Don't Repeat Yourself) Principles
 
-#### Definitions
+**Definitions**
 
 - **POJO** - Plain old Java Object
   - any class file = attributes + methods (getters + setters + **sth**.)  !!!不只是getter 和setter
@@ -19,21 +19,25 @@
 
 - **DTOs** (Data Transfer Objects) - state transfer of logical layer
 
-#### Inversion of Control (IOC)
+**Inversion of Control (IOC)**
 
 - provides mechanism of dependency injection
 - Application Context wraps the Bean Factory
 - provides auto-configuration of the Application Context
 
+
+
 ### 1.2 Introduction to Spring-boot
 
-#### Spring boot Key Aspects
+Spring boot Key Aspects
 
 - Embedded tomcat (or others)
 - Auto-configuration of Application Context
 - Automatic Servlet Mappings
 - Database support and Hibernate / JPA dialect
 - Automatic Controller Mappings
+
+
 
 ### 1.3 Creating a Spring Boot Project
 
@@ -69,13 +73,13 @@
 - Objects injected at runtime or startup time
 - An object accepts the dependencies for construction instead of constructing them
 
-#### Traditional Dependency Management
+**Traditional Dependency Management**
 
 <img src="`Spring Framework`_Notepic/image-20220929143835800.png" alt="image-20220929143835800" style="zoom:33%;" />
 
 a Main method need to create several classes at first, and config them of a lot depths.
 
-#### loC Container Management
+**loC Container Management**
 
 <img src="`Spring Framework`_Notepic/image-20220929150353689.png" alt="image-20220929150353689" style="zoom: 33%;" />
 
@@ -85,14 +89,14 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 
 ### 1.6 Annotations
 
-#### What are Annotations
+**What are Annotations**
 
 - Native support in Java
 - Metadata for your code
 - Often used for compiler or runtime instructions. e.g.`@test`
 - Great leverage point for pointcuts.
 
-#### Proxies
+**Proxies**
 
 - Beans in Bean Factory are proxied 
 - Annotations drive proxies
@@ -101,28 +105,28 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 
 
 
-## 2. Data Access in Spring
+## II. Data Access in Spring
 
 ### 2.1 Spring Data
 
-#### What is Spring Data?
+**What is Spring Data?**
 
 - Provides a common set of interfaces, based on JPA
 - Provides a common ***naming convention （命名规范）***  
-- Provides aspected behavior
+- Provides expected behavior
 - Provides Repository and Data Mapping convention(数据映射规范)
 
-#### Benefits of Spring Data
+**Benefits of Spring Data**
 
 - Remove boilerplate code (模板代码)
-- Allows for swapping datasources easier. (from ***Poc= proof of concept 概念验证*** to production data)
+- Allows for swapping data sources easier. (from ***POC= proof of concept 概念验证*** to production data)
 - Allows to focus on business logic
 
-### Key Components
+**Key Components**
 
-- **Repository Interface** = *an interface that leverages proxies to build the actual base CRUD methods.*
-- **Entity Object** = the DTO for the data layer
-- **DataSource** = auto trigger by Spring
+- ***Repository Interface*** = *an interface that leverages proxies to build the actual base CRUD methods.*
+- ***Entity Object*** = the DTO for the data layer
+- ***Data Source*** = auto trigger by Spring
 
 
 
