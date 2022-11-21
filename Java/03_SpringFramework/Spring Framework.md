@@ -19,7 +19,7 @@
 
 - **DTOs** (Data Transfer Objects) - state transfer of logical layer
 
-**Inversion of Control (IOC)**
+**Inversion of Control (IoC)**
 
 - provides mechanism of dependency injection
 - Application Context wraps the Bean Factory
@@ -590,6 +590,195 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
    
        }
    }
+   ```
+
+
+
+
+## III. Service Tier
+
+### 3.1 Utilizing IoC
+
+**Why use loC**
+
+- Allows you to focus on contracts.
+- Develop business code only, leave construction to the container.
+- Build intermediate abstractions. 建立中间抽象。
+- Produce clean code.
+
+**Spring and loC**
+
+- loC container is configured by developer. e.g. Component Scanning, XMLConfig, JavaConfig
+- Spring maintains handles to objects constructed at startup
+  - Spring scan every bean that will be configured, and creates an initialization, and handle to initialization in BeanFactory itself.
+  - Spring build the order beans must be constructed.
+  - Multi-step process to construct the objects themselves.
+
+- Spring serves singletons to classes during construction
+- Spring maintains lifecycle of beans
+- Developer only accesses the application context
+
+
+
+### 3.2 Build a service abstraction
+
+**Why build Service Abstractions**
+
+- Encapsulate layers
+
+  > view layer (视图层) --- service abstractions: build business logic (服务层) --- data layer (数据层)
+
+- Abstract 3rd Party APIs
+
+  > Isolated the impacted code if something does change.
+
+- Simplify implementations
+- Swap out implementations as runtime
+
+**How to build one** 
+
+- Define our interface (or class)
+- Create the API
+- Inject the dependencies
+- Annotate or configure
+- Code the implementation
+
+
+
+### 3.3 Develop a service object
+
+```
+...
+|--business
+	|-- ReservationService
+	|-- RoomReservation				// DTO combines three entities
+...
+```
+
+We need to annotate classes with stereotype (such as `@Component`) to let Spring Framework to recognize the class.
+
+```java
+// Step 1: add @Service
+@Service
+public class ReservationService {
+    
+// Step 2: make parameters final
+    private final RoomRepository roomRepository;
+    private final GuestRepository guestRepository;
+    private final ReservationRepository reservationRepository;
+    
+// Step 3: add a simple constructure.
+    public ReservationService(RoomRepository roomRepository, GuestRepository guestRepository, ReservationRepository reservationRepository) {
+        this.roomRepository = roomRepository;
+        this.guestRepository = guestRepository;
+        this.reservationRepository = reservationRepository;
+    }
+
+    public List<RoomReservation> getRoomReservationsForDate(Date date) {
+```
+
+- `@Service` : write abstract oriented programming that responds to service and vocations.
+
+- Make all the parameters final, because its singleton and don't want them to be changed.
+- Add a simple constructer.
+
+
+
+**Why not add `@Autowired` to constructer?** 
+
+![image-20221121160641986](Notepic/image-20221121160641986.png)
+
+- Java Class will set a default constructor / use the first constructer as the default constructor.
+- When get 2 constructors, the first one should get `autowired`.
+
+
+
+### IV. Web Pages with Spring
+
+### 4.1  Controller
+
+**Model View Control —— MVC Pattern**
+
+- Fundamental pattern for web application development.
+- Model is the data.
+- View is the visual display that is populated.
+- Controller wires the view with the model.
+
+**Spring Controller**
+
+- Spring bean
+- Annotated for the servlet mapping
+- Responds to incoming web requests
+- Outputs a view or raw data
+
+### 4.2 Build a Controller
+
+```java
+@Controller
+@RequestMapping("/reservations")
+public class RoomReservationController {
+    private final DateUtils dateUtils;
+    private final ReservationService reservationService;
+
+    public RoomReservationController(DateUtils dateUtils, ReservationService reservationService) {
+        this.dateUtils = dateUtils;
+        this.reservationService = reservationService;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String getReservations(@RequestParam(value = "date", required = false) String dateString, Model model){
+        Date date = this.dateUtils.createDateFromDateString(dateString);
+        List<RoomReservation> roomReservations = this.reservationService.getRoomReservationsForDate(date);
+        model.addAttribute("roomReservations",roomReservations);
+        return "roomres";
+    }
+}
+```
+
+- Model Class: 用于返回的数据.
+- `@Controller`: It provides web mapping to a URL.
+- `RequestMapping`: 
+- `@RequestParam(value = "date",required = false)`
+- `return "roomres"`: a template of thymeleaf, in resources/templates.
+
+### 4.3 Using Thymeleaf
+
+1. Add dependency
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+   </dependency>
+   ```
+
+2. Add a statistic page
+
+   ```html
+   <!DOCTYPE html>
+   <html lang="en" xmlns:th="http://www.thymeleaf.org">
+   <head>
+       <meta charset="UTF-8">
+       <title>Landon Hotel: Room Reservations</title>
+   </head>
+   <body>
+   <h1>Welcome to the Reservations Page</h1>
+   <table>
+       <tr>
+           <td>Room</td>
+           <td>Room Number</td>
+           <td>Guest</td>
+       </tr>
+       <tr th:each="roomReservation: ${roomReservations}">
+           <td th:text="${roomReservation.roomName}">Room Name</td>
+           <td th:text="${roomReservation.roomNumber}">Room Number</td>
+           <td th:text="${roomReservation.lastName}!=null? ${roomReservation.lastName} + ', ' +
+           ${roomReservation.firstName}: 'VACANT'">Guest</td>
+       </tr>
+   </table>
+   
+   </body>
+   </html>
    ```
 
    
