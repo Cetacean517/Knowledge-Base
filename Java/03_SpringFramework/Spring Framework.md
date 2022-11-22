@@ -920,3 +920,42 @@ public List<Room> getRooms(){
 private long guestId;
 ```
 
+
+
+# VI. Additional Topics
+
+### 6.1 Testing Spring Boot applications
+
+**Unit Testing**
+
+- Spring not needed
+- Can inject framework mocks
+- Simple strategy using Unit
+
+**Controller Case**
+
+- ServletAPI Mocks
+- ModelAndViewAssert
+- What about MockMVC?
+
+**Integration Testing**
+
+- To manage Spring loC container caching between test.
+- To provide Dependency Injection of text fixture instances.
+- To provide transaction management appropriate to integration testing
+- To supply Spring-specific base classes that assist developers in writing integration tests.
+
+**Areas for Integration Tests Support**
+
+- JDBC
+- Annotations
+- TestContext
+- MockMVC
+
+
+
+### 6.2 Spring Security
+
+
+
+### 6.3 Other projects
