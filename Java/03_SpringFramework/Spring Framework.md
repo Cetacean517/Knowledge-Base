@@ -278,6 +278,8 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
    - `implements ApplicationListener<ApplicationReadyEvent>`:  run after spring boot finished building, and before query.
    - `findAll()`: 自动生成的方法。
 
+
+
 ### 2.4 Using a remote database
 
 1. Fix `pom.xml`
@@ -303,6 +305,8 @@ Main --- trigger ---> loC Container, and let loC Container to instantiation (实
 3. Run the local server.
 
 4. Run Application.
+
+
 
 ### 2.5 Build an additional repository
 
@@ -693,7 +697,7 @@ public class ReservationService {
 
 
 
-### IV. Web Pages with Spring
+## IV. Web Pages with Spring
 
 ### 4.1  Controller
 
@@ -710,6 +714,8 @@ public class ReservationService {
 - Annotated for the servlet mapping
 - Responds to incoming web requests
 - Outputs a view or raw data
+
+
 
 ### 4.2 Build a Controller
 
@@ -740,6 +746,8 @@ public class RoomReservationController {
 - `RequestMapping`: 
 - `@RequestParam(value = "date",required = false)`
 - `return "roomres"`: a template of thymeleaf, in resources/templates.
+
+
 
 ### 4.3 Using Thymeleaf
 
@@ -782,3 +790,133 @@ public class RoomReservationController {
    ```
 
    
+
+## V. Exposing RESTful Endpoints
+
+### 5.1 RestController
+
+- Spring uses controllers for RESTful webservices.
+- Just another MVC, only our view is JSON.
+- Once you understand the paradigm, its straight forward.
+- Spring marshals JSON for you.
+- You can configure XML if desired.
+
+
+
+### 5.2 Expose a service layer  through REST
+
+```java
+@RestController
+@RequestMapping("/api")
+public class WebserviceController {
+    private final DateUtils dateUtils;
+    private final ReservationService reservationService;
+
+    public WebserviceController(DateUtils dateUtils, ReservationService reservationService) {
+        this.dateUtils = dateUtils;
+        this.reservationService = reservationService;
+    }
+    @RequestMapping(path = "/reservations", method = RequestMethod.GET)
+    public List<RoomReservation> getReservation(@RequestParam(value = "date", required = false) String dateString){
+        Date date = this.dateUtils.createDateFromDateString(dateString);
+        return this.reservationService.getRoomReservationsForDate(date);
+    }
+}
+```
+
+- `@RestController`
+  - Tell Spring to put an app response body on each of our methods. 
+  - Response body will take the data object that we return converted into a JSON payload.
+  - Return that JSON payload out through our web interface.
+- `@RequestMapping("/api")` Give an url.
+- `@RequestMapping(path = "/reservations", method = RequestMethod.GET)` 
+  - Set address and method.
+- `@RequestParam(value = "date", required = false)` .
+  - value: alias name of the parameter pass from the view. (接受前端变量的名字)
+  - 使得后端可以给参数自定义的名字。
+  - required = false: 当传入参数为空时，可以利用自定义方法生成当前时间。
+
+
+
+### 5.3 Challenge: RESTful endpoints
+
+> Requirements:
+>
+> 1. Expose a service that lists our guests and allows one to be added at /api/guests
+> 2. Expose a service that lists our rooms at `/api/rooms`
+> 3. Wire them through our `ReservationService`
+
+1. Add RESTful controller to `WebserviceControll Class` in **Controller Tier**.
+
+```java
+@RequestMapping(path = "/guest", method = RequestMethod.GET)
+public List<Guest> getGuests(){
+    return this.reservationService.getHotelGuests();
+}
+
+@PostMapping(path = "/guest")
+@ResponseStatus(HttpStatus.CREATED)
+public void addGuest(@RequestBody Guest guest){
+    this.reservationService.addGuest(guest);
+}
+
+@GetMapping(path = "rooms")
+public List<Room> getRooms() {return this.reservationService.getRooms();}
+```
+
+- `@PostMapping(path = "/guest")` == `@RequestMapping(path = "/guest", method = RequestMethod.POST)`
+- `@ResponseStatus(HttpStatus.CREATED)` : return a response.
+- `@RequestBody`: pass a query body.
+
+2.  Add methods to `ReservationService Class` in **Service Tier**.
+
+```java
+public List<Guest> getHotelGuests(){
+    Iterable<Guest> guests = this.guestRepository.findAll();
+    List<Guest> guestList = new ArrayList<>();
+    guests.forEach(guest->{guestList.add(guest);});
+    guestList.sort(new Comparator<Guest>() {
+        @Override
+        public int compare(Guest o1, Guest o2) {
+            if (o1.getLastName().equals(o2.getLastName())){
+                return o1.getFirstName().compareTo(o2.getFirstName());
+            }
+            return o1.getLastName().compareTo(o2.getLastName());
+        }
+    });
+    return guestList;
+}
+
+public void addGuest(Guest guest){
+    if (null == guest){
+        throw new RuntimeException("Guest cannot be null");
+    }
+    this.guestRepository.save(guest);
+}
+
+public List<Room> getRooms(){
+    Iterable<Room> rooms = this.roomRepository.findAll();
+    List<Room> roomList = new ArrayList<>();
+    rooms.forEach(room -> {roomList.add(room);});
+    roomList.sort(new Comparator<Room>() {
+        @Override
+        public int compare(Room o1, Room o2) {
+            return o1.getRoomNumber().compareTo(o2.getRoomNumber());
+        }
+    });
+    return roomList;
+}
+```
+
+- `guestRepository.save(guest)`: Add a data.
+- `throw ClientException` in reality.
+
+3. Fix id in Table in **Data Tier**.
+
+```java
+@Id
+@Column(name="GUEST_ID")
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private long guestId;
+```
+
