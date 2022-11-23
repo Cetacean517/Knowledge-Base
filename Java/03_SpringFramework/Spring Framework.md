@@ -956,6 +956,35 @@ private long guestId;
 
 ### 6.2 Spring Security
 
+- Filter based Authentication and Authorization framework
+- Exploit prevention
+- Robust Library Support
+
 
 
 ### 6.3 Other projects
+
+- SpEL = Spring Expression Language : modify properties based on the presence of some value.
+- AOP
+- Transaction
+- i18n
+- Websockets
+- JMS
+- Tasks
+- Caching
+
+**Spring Boot Framework**
+
+- Actuator
+- Logging
+- CLI for building apps
+
+**Additional Projects**
+
+- AMQP
+- Batch
+- Cloud
+- GraphQL
+- Session
+- Integration
+- Shell
