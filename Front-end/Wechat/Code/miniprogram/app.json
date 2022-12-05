@@ -1,13 +1,37 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/album/album"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#3A6935",
+    "navigationBarTitleText": "Love with Art",
+    "navigationBarTextStyle": "white",
+    "pageOrientation": "auto"
+  },
+  "tabBar": {
+    "backgroundColor": "#F8F0CC",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "index",
+        "iconPath": "/icon/index.png",
+        "selectedIconPath": "/icon/index_select.png"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "journals",
+        "iconPath": "/icon/journal.png",
+        "selectedIconPath": "/icon/journal_select.png"
+      }, {
+        "pagePath": "pages/album/album",
+        "text": "album",
+        "iconPath": "/icon/photo.png",
+        "selectedIconPath": "/icon/photo_select.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
