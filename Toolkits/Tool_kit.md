@@ -33,13 +33,22 @@
 | KeePass           | https://keepass.info/download.html                           |
 | Fork              |                                                              |
 
-VS Code Configuration
+**VS Code Configuration**
 
 | Plugin Name          | Functions                       |
 | -------------------- | ------------------------------- |
 | Chinese (Simplified) | 中文翻译                        |
 | GitLens              | 显示git commit的时间以及细节... |
 |                      |                                 |
+
+**Chrome-extensions**
+
+| Plugin Name | Functions                                |
+| ----------- | ---------------------------------------- |
+| DeepL       | 翻译插件                                 |
+| SimpleRead  | 阅读优化插件                             |
+| Elasticvue  | (可选) 查看Elastic-search可视化dashboard |
+| JSONVue     | JSON prettier                            |
 
 
 
