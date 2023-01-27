@@ -1,0 +1,26 @@
+/**index.wxss**/
+page{
+  background-color: #3A6935;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #000;
+  font-weight:500;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 256rpx;
+  height: 256rpx;
+  margin: 40rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin: 10px 0;
+  font-family: fantasy;
+  font-size:50rpx;
+}

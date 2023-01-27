@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="learning-spring (22)" />
+        <module name="learning-spring (12)" />
+        <module name="learning-spring (20)" />
+        <module name="learning-spring (10)" />
+        <module name="learning-spring (16)" />
+        <module name="learning-spring (24)" />
+        <module name="learning-spring (14)" />
+        <module name="learning-spring" />
+        <module name="learning-spring (19)" />
+        <module name="learning-spring (17)" />
+        <module name="learning-spring (4)" />
+        <module name="learning-spring (2)" />
+        <module name="learning-spring (8)" />
+        <module name="learning-spring (6)" />
+        <module name="learning-spring (11)" />
+        <module name="learning-spring (23)" />
+        <module name="learning-spring (21)" />
+        <module name="learning-spring (15)" />
+        <module name="learning-spring (13)" />
+        <module name="learning-spring (25)" />
+        <module name="learning-spring (1)" />
+        <module name="learning-spring (18)" />
+        <module name="learning-spring (5)" />
+        <module name="learning-spring (3)" />
+        <module name="learning-spring (9)" />
+        <module name="learning-spring (7)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="learning-spring" target="17" />
+      <module name="learning-spring (1)" target="17" />
+      <module name="learning-spring (10)" target="17" />
+      <module name="learning-spring (11)" target="17" />
+      <module name="learning-spring (12)" target="17" />
+      <module name="learning-spring (13)" target="17" />
+      <module name="learning-spring (14)" target="17" />
+      <module name="learning-spring (15)" target="17" />
+      <module name="learning-spring (16)" target="17" />
+      <module name="learning-spring (17)" target="17" />
+      <module name="learning-spring (18)" target="17" />
+      <module name="learning-spring (19)" target="17" />
+      <module name="learning-spring (2)" target="17" />
+      <module name="learning-spring (20)" target="17" />
+      <module name="learning-spring (21)" target="17" />
+      <module name="learning-spring (22)" target="17" />
+      <module name="learning-spring (23)" target="17" />
+      <module name="learning-spring (24)" target="17" />
+      <module name="learning-spring (25)" target="17" />
+      <module name="learning-spring (3)" target="17" />
+      <module name="learning-spring (4)" target="17" />
+      <module name="learning-spring (5)" target="17" />
+      <module name="learning-spring (6)" target="17" />
+      <module name="learning-spring (7)" target="17" />
+      <module name="learning-spring (8)" target="17" />
+      <module name="learning-spring (9)" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="learning-spring" options="-parameters" />
+      <module name="learning-spring (1)" options="-parameters" />
+      <module name="learning-spring (10)" options="-parameters" />
+      <module name="learning-spring (11)" options="-parameters" />
+      <module name="learning-spring (12)" options="-parameters" />
+      <module name="learning-spring (13)" options="-parameters" />
+      <module name="learning-spring (14)" options="-parameters" />
+      <module name="learning-spring (15)" options="-parameters" />
+      <module name="learning-spring (16)" options="-parameters" />
+      <module name="learning-spring (17)" options="-parameters" />
+      <module name="learning-spring (18)" options="-parameters" />
+      <module name="learning-spring (19)" options="-parameters" />
+      <module name="learning-spring (2)" options="-parameters" />
+      <module name="learning-spring (20)" options="-parameters" />
+      <module name="learning-spring (21)" options="-parameters" />
+      <module name="learning-spring (22)" options="-parameters" />
+      <module name="learning-spring (23)" options="-parameters" />
+      <module name="learning-spring (24)" options="-parameters" />
+      <module name="learning-spring (25)" options="-parameters" />
+      <module name="learning-spring (3)" options="-parameters" />
+      <module name="learning-spring (4)" options="-parameters" />
+      <module name="learning-spring (5)" options="-parameters" />
+      <module name="learning-spring (6)" options="-parameters" />
+      <module name="learning-spring (7)" options="-parameters" />
+      <module name="learning-spring (8)" options="-parameters" />
+      <module name="learning-spring (9)" options="-parameters" />
+    </option>
+  </component>
+</project>
