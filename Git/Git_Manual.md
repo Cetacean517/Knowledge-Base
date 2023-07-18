@@ -42,3 +42,36 @@
 
 ​      <img src="Notepic/image-20220827162209566.png" alt="image-20220827162209566" style="zoom:70%;" /> 
 
+
+
+## 4. Error 解决方法
+
+### a. OpenSSL SSL_read: Connection was reset, errno 10054
+
+**Solution1**
+
+- `git config --global http.sslVerify false`
+
+**Solution2**
+
+> ##### Error Notes
+>
+> - remote: Support for password authentication was removed on August 13, 2021.
+>
+> - remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+
+1. 在GitHub上申请token
+2. `git remote set-url origin https://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@github.com/Cetacean517/FacePreprocessMTCNN.git`
+3. `git push -u origin main`
+
+https://blog.csdn.net/qq_42592823/article/details/123913963
+
+**Solution3**
+
+```cmd
+git config --global http.proxy http://127.0.0.1:1080
+git config --global --unset http.proxy
+git push -u origin main
+```
+
+https://blog.csdn.net/Hodors/article/details/103226958
