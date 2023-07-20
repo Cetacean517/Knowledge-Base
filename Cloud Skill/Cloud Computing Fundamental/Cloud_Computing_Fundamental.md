@@ -457,22 +457,144 @@ Firewalls filter network traffic based on rules defined by an administrator.
 
 # 4. Cloud Storage Concepts
 
-4.1 Understanding Cloud Storage
+## 4.1 Understanding Cloud Storage
+
+**Benefits**
+
+- Easy file access
+- Easy sharing
+- Redundancy
+- Very cheap
+
+**How Cloud Storage Works**
+
+<img src="./Notepic/image-20230418135509800.png" alt="image-20230418135509800" style="zoom:25%;" />
+
+**Software-defined Storage Features**
+
+- Scalability & transparency
+- Standard user interface
+- Storage type support
 
 
 
+## 4.2 Storage Characteristics
+
+**Storage Performance Types**
+
+- ***Hot Storage*** - Data is always available and is instantly accessible.
+- ***Cold Storage*** - Data is not available immediately and it can take time to access. 
+
+**Storage Containers**
+
+- 上传的数据被存储在容器中
+- 供应商提供多种容器
+- 他们被称为buckets / blobs
+- There are both hot and cold containers
+- Flexible storage infrastructure.
 
 
-4.2 Storage Characteristics
+
+**关键性能参数**
+
+- Cost per GB
+- Storage limits
+- Max containers
+- Data encryption
+- Compression
+- Storage usage
+
+![image-20230418140751406](./Notepic/image-20230418140751406.png)
 
 
 
+### 4.3 Storage Types and Features
+
+**Storage Types**
+
+- File storage
+- Block storage
+- Object storage = Data + Metadata(describe data) + Attributes (describe metadata e.g. color/person/...)
+
+**Storage Features**
+
+- ***Compression*** - Make file smaller.
+
+  > 查找文件中的重复信息，并用较短字符串替代。从而压缩信息。
+
+- ***Deduplication*** - Works at file / block level.
+
+  > 消除任何重复数据。
+
+- ***Capacity On demand*** - If need more space, you pay for it.
+
+  > 注意按需扩容，避免非必要开支
+
+  
+
+## 4.4 Content Delivery Networks
+
+> A special type of Web load balancing server.
+
+**How CDNs Work**
+
+- ***Origin*** - 源服务器。
+- ***PoP*** (a point of presents) 
+  - 用于缓解节点过多时，连接过慢的情况。
+  - Done for each remote locaiton.
+  - Each got one / more edge servers.
+- ***Edge servers*** - 缓存源服务器数据，并提供给临近用户。
 
 
-4.3 Storage Types and Features
+
+# 5. Cloud Design
+
+## 5.1 Cloud Design Principles, Redundancy, and High Availability
+
+**Redundancy and High Availability**
+
+- 冗余可以用作故障时替补。
+- 高可用性，保证用户可以从云供应商获得良好不间断的服务。
 
 
 
+## 5.2 Redundancy Plans
+
+Hardware, Network, Geographic, Process, Software, Data
 
 
-4.4 Content Delivery Networks
+
+## 5.3 High Availability
+
+Service availability is determined in terms of nines (uptime the provider guarantees).
+
+**Availability Downtime**
+
+- ***3 nines*** - 99.9% - 8.77 h/year (Max down time)
+- ***4 nines*** - 99.99% -  52.6 min/year
+- ***5 nines*** - 99.999% - 5.26% min/year
+- ***6 nines*** - 99.9999% - 31.56 secs/year
+
+
+
+## 5.4 Disaster Recovery
+
+> Ability to be operational after a disaster.
+
+<img src="./Notepic/image-20230418163510582.png" alt="image-20230418163510582" style="zoom:25%;" />
+
+
+
+## 5.5 Recovery Point and Time Objectives
+
+**Recover Point Objectives** 
+
+- The max age of files that must be recovered from backups to restore operations.
+
+  ![image-20230418163800600](./Notepic/image-20230418163800600.png)
+
+**Recovery Time Objectives**
+
+- The max time a system can be offline during a disaster
+
+![image-20230418163926176](./Notepic/image-20230418163926176.png)

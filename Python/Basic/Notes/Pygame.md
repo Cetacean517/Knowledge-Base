@@ -44,6 +44,7 @@ pygame.display.set_caption("Python游戏之旅")
     - pygame.NOFRAME    窗口没有边界显示
     - pygame.FULLSCREEN    窗口全屏显示
   
+
 **注意： 每种显示方式要配合相应的处理机制**
 - 对扩张显示界面的刷新
 - 对扩张/缩小显示界面的响应
@@ -333,4 +334,3 @@ Color("BEBEBEFF")
       - Color   连续多线的绘制颜色
       - closed  如果为True，起止节点间自动增加封闭直线
       - width = 1 直线的宽度, 默认值为1
-    - 
