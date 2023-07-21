@@ -131,3 +131,28 @@ app.directive('img-lazy',{
 app.mount('#app')
 ```
 
+
+
+## element-ui- Table
+
+```html
+<el-table :data="dataTable" border stripe @cell-click="handleClickExecution" scrollbar-always-on v-loading="Loading">
+  <el-table-column v-for="(item, index) in columnList" :key="index" :label="item" min-width="116">
+      <template #default="scope">
+          <div>{{scope.row.category}}</div>		// 行数据
+          <div>{{index}}</div>					// 行index
+          <div>{{scope.row.category[index] == 0 ? '' : scope.row.category[index]}}</div>
+      </template>	
+   </el-table-column>
+</el-table>
+```
+
+
+
+![image-20230721115347138](Notepic/image-20230721115347138.png)
+
+
+
+## Echarts
+
+[在项目中引入 ECharts - 入门篇 - Handbook - Apache ECharts](https://echarts.apache.org/handbook/zh/basics/import)
