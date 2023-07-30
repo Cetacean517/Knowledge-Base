@@ -89,3 +89,70 @@ setup(){
 npm install --save postcss-px-to-viewport
 ```
 
+
+
+## 图片懒加载 --- 组件懒加载
+
+每次加载5条数据
+
+**思路**
+
+判断组件是否进入到视口区域，只有进入视口区域后才发送网络请求
+
+1. 如何判断是否进入视口区域
+   - 判断距离
+   - vueUse 监听 api
+
+2. img.src = url --- 对于组件来说，再加后需要自动拉去数据。
+
+**实现步骤**
+
+1. 指令
+2. 实现懒加载的核心逻辑
+
+```js
+//main.js 准备自定义指令
+import {creatApp} from 'vue'
+import App from './App.vue'
+
+// 全局指令注册
+const app = creatApp(App)
+app.directive('img-lazy',{
+    // 指令挂载后自动执行
+    mounted(el, binding){
+        // el:指令挂载到的元素 dom img
+        // binding: value 指令等于后面表达式的值
+        console.log(el,binding.value)
+        // 图片懒加载的核心逻辑
+        
+    }
+})
+
+app.mount('#app')
+```
+
+
+
+## element-ui- Table
+
+```html
+<el-table :data="dataTable" border stripe @cell-click="handleClickExecution" scrollbar-always-on v-loading="Loading">
+  <el-table-column v-for="(item, index) in columnList" :key="index" :label="item" min-width="116">
+      <template #default="scope">
+          <div>{{scope.row.category}}</div>		// 行数据
+          <div>{{index}}</div>					// 行index
+          <div>{{scope.row.category[index] == 0 ? '' : scope.row.category[index]}}</div>
+      </template>	
+   </el-table-column>
+</el-table>
+```
+
+
+
+![image-20230721115347138](Notepic/image-20230721115347138.png)
+
+
+
+## Echarts
+
+[在项目中引入 ECharts - 入门篇 - Handbook - Apache ECharts](https://echarts.apache.org/handbook/zh/basics/import)
