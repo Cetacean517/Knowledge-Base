@@ -134,7 +134,70 @@ vue.js:634 [Vue warn]: Do not mount Vue to <html> or <body> - mount to normal el
     </div>
 ```
 
+
+
+## 1.4 组件的写法
+
+在 Vue.js 中，父组件向子组件传递数值可以使用 props 属性来实现。以下是一个简单的示例代码，演示了如何在父组件中传递数值给子组件：
+
+父组件（Parent.vue）：
+
+```
+<template>
+  <div>
+    <ChildComponent :message="parentMessage" />
+  </div>
+</template>
+
+<script>
+import ChildComponent from './ChildComponent.vue';
+
+export default {
+  components: {
+    ChildComponent
+  },
+  data() {
+    return {
+      parentMessage: 'Hello from parent component'
+    };
+  }
+};
+</script>
+```
+
+
+
+子组件（ChildComponent.vue）：
+
+```
+<template>
+  <div>
+    <p>{{ message }}</p>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    message: {
+      type: String,
+      required: true
+    }
+  }
+};
+</script>
+```
+
+
+
+在上述示例中，父组件 (Parent.vue) 中通过使用 `:message="parentMessage"` 的方式将 `parentMessage` 数据传递给子组件 (ChildComponent.vue) 的 `message` 属性。子组件通过定义 `props` 属性来接收父组件传递的值，并在模板中使用该值。
+
+注意，子组件中定义的 `props` 中的 `message` 属性使用了类型验证 (type validation)，这里指定了类型为字符串（String），其中也可以添加其他类型验证。`required: true` 表示该属性为必需的，如果父组件未传递该属性，会发出警告。
+
+这样，当你在父组件中修改 `parentMessage` 数据时，子组件将会接收到最新的值。
+
 ## Part 2 本地应用
+
 - 通过Vue实现常见的网页效果
 ### 2.1 内容绑定，事件绑定
 #### v-text
@@ -762,3 +825,6 @@ js
   - v-on在绑定事件时可以传递自定义参数
   - 通过v-model可以快速的设置和获取表单元素的值
   - 基于数据的开发方式
+
+
+
