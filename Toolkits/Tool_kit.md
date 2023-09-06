@@ -35,11 +35,13 @@
 
 **VS Code Configuration**
 
-| Plugin Name          | Functions                       |
-| -------------------- | ------------------------------- |
-| Chinese (Simplified) | 中文翻译                        |
-| GitLens              | 显示git commit的时间以及细节... |
-|                      |                                 |
+| Plugin Name            | Functions                       |
+| ---------------------- | ------------------------------- |
+| Chinese (Simplified)   | 中文翻译                        |
+| GitLens                | 显示git commit的时间以及细节... |
+| ***Frontend plugins*** |                                 |
+| Live Server            | 右键在网页中直接打开网页。      |
+|                        |                                 |
 
 **Chrome-extensions**
 
