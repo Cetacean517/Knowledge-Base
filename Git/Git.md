@@ -578,7 +578,9 @@ $ git remote -v
 $ git push origin <branchname>
 $ git checkout -b branch-name origin/branch-name
 $ git pull
-$ git branch --set-upstream branch-name origin/branch-name
+$ git branch --set-upstream-to branch-name origin/branch-name
+  // git branch --set-upstream-to origin/cmaster_front cmaster_front
+ //git push --set-upstream origin c_uarca_datasync
 
 // 创建标签
 $ git show <tagname>
@@ -591,4 +593,21 @@ $ git push origin <tagname>
 $ git push origin --tags
 $ git tag -d <tagname>
 $ git push origin :refs/tags/<tagname>
+  
+// 常用
+// 删除远程分支
+git push origin -d <branch_name>
+git push origin --delete remoteBranchName
+  
+// 删除本地分支
+git branch -d localBranchName
+  
+  
+// 修改名字
+git branch -m old-branch new-branch
+git push origin new-branch
+git push origin --delete old-branch
+git branch --set-upstream-to origin/cmaster_front cmaster_front
+
 ```
+
