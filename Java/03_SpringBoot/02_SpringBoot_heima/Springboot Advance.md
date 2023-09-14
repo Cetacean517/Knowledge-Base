@@ -4,7 +4,7 @@
 
 ### 1.1 自动配置
 
-#### 1. Condition
+#### I. Condition
 
 在Spring4.0新增的调节判断功能，实现***选择性创建Bean操作***。
 
@@ -57,7 +57,7 @@
    Class<? extends Condition>[] value();
    ```
 
-   `Conditon` 是一个接口，包含一个方法：
+   `Condition` 是一个接口，包含一个方法：
 
    改方法可以定义匹配条件，根据匹配结果返回boolean值。
 
@@ -209,10 +209,60 @@
   - 判断条件：在初始化Bean时，使用`@Conditional` (条件类.class)注解
 - SpringBoot提供的常用条件注解：
   - ConditionalOnProperty：判断配置文件中是否有对应属性和值才初始化Bean。
-  - ConditionalOnClass：判断环境中是否有对应的字节码文件才初始化Bean。
-  - ConditonalOnMissing：判断环境中没有对应Bean才初始化Bean。
+  - ConditionalOnClass：判断环境中是否有对应的字节码文件（类？）才初始化Bean。
+  - ConditonalOnMissing：判断环境中是否有改Bean，没有对应Bean才初始化Bean。
 
 
+
+#### II. 切换内置web服务器
+
+SpringBoot的web环境中默认使用tomcat作为内置服务器，并提供四种服务器供我们选择。
+
+> 内置服务器的文件夹：org.springframework.boot.autoconfigure.web.embedded
+>
+> - 配置文件  EmbeddedWebServerFactoryCustomizerAutoConfiguration
+> - Jetty服务器 JettyWebServerFactoryCustomizer
+> - Netty服务器 NettyWebServerFactoryCustomizer
+> - Tomcat服务器 TomcatWebServerFactoryCustomizer
+> - Undertow服务器 UndertowWebServerFactoryCustomizer
+
+**实现**
+
+1. 排除tomcat的默认依赖。
+
+   进入pom.xml --- 右键 --- Diagrams --- Show Diagram --- 查看maven依赖关系图
+
+   <img src="./Notepic/image-20230913231307269.png" alt="image-20230913231307269" style="zoom:33%;" />
+
+   搜索 tomcat --- Shift + delete --- 排除依赖，在pom.xml 会新增一段exclusion代码。
+
+   <img src="./Notepic/image-20230913231559981.png" alt="image-20230913231559981" style="zoom:33%;" />
+
+2. 添加新的web服务器依赖。
+
+   ```xml
+   		<dependency>
+   			<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-web</artifactId>
+   			<exclusions>
+   				<exclusion>
+   					<groupId>org.springframework.boot</groupId>
+   					<artifactId>spring-boot-starter-tomcat</artifactId>
+   					<!--排除tomcat的依赖-->
+   				</exclusion>
+   			</exclusions>
+   		</dependency>
+   
+   		<!--引入jetty的依赖-->
+   		<dependency>
+   			<groupId>org.springframework.boot</groupId>
+   			<artifactId>spring-boot-starter-jetty</artifactId>
+   		</dependency>
+   ```
+
+#### III. @Enable* 注解
+
+SpringBoot中提供了多个Enable开头的注解，用于动态启动某些功能。其底层原理是使用@Import注解导入配置类，实现Bean的动态加载。
 
 
 
