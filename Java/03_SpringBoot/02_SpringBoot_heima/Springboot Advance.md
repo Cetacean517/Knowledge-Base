@@ -8,111 +8,111 @@
 
 在Spring4.0新增的调节判断功能，实现***选择性创建Bean操作***。
 
-##### 案例
+##### **案例**
 
 > 在Spring的IOC容器中有一个User的Bean，现要求：
 >
 > 1. 导入Jedis坐标后，加载该Bean；没导入，则不加载。
 > 2. 将类的判断定义改为动态的。判断哪个字节码文件，使用动态指定。
 
-##### 实现 需求1
+##### **实现 需求1**
 
 1. 创建一个User类
 
-   ```java
-   package com.cetacean.domain;
-   
-   public class User {
-   }
-   ```
+```java
+package com.cetacean.domain;
 
-   
+public class User {
+}
+```
 
 2. 创建一个User Config类，用于创建User Bean。并且增加`@Conditional` 注解，使得在符合某些条件时，才创建Bean。
 
-   ```java
-   package com.cetacean.config;
-   
-   import com.cetacean.condition.ClassCondition;
-   import com.cetacean.domain.User;
-   import org.springframework.context.annotation.Bean;
-   import org.springframework.context.annotation.Conditional;
-   import org.springframework.context.annotation.Configuration;
-   
-   @Configuration
-   @Conditional(ClassCondition.class)		// add condition by ClassCondition
-   public class UserConfig {
-       @Bean															// create Bean
-       public User user(){
-           return new User();
-       }
-   }
-   ```
+```java
+package com.cetacean.config;
 
-   ***==@Conditional==***
+import com.cetacean.condition.ClassCondition;
+import com.cetacean.domain.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
+import org.springframework.context.annotation.Configuration;
 
-   `@Conditional` 注解，包含一个参数:  改参数是由Condition的子类组成的数组。
+@Configuration
+@Conditional(ClassCondition.class)		// add condition by ClassCondition
+public class UserConfig {
+    @Bean															// create Bean
+    public User user(){
+        return new User();
+    }
+}
+```
 
-   ```
-   Class<? extends Condition>[] value();
-   ```
 
-   `Condition` 是一个接口，包含一个方法：
 
-   改方法可以定义匹配条件，根据匹配结果返回boolean值。
+##### ***==@Conditional==***
 
-   ````java
-   boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
-   ````
+`@Conditional` 注解，包含一个参数:  改参数是由Condition的子类组成的数组。
 
-   
+```
+Class<? extends Condition>[] value();
+```
+
+`Condition` 是一个接口，包含一个方法：
+
+改方法可以定义匹配条件，根据匹配结果返回boolean值。
+
+````java
+boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
+````
+
+
 
 3. 导入Jedis依赖 --- maven reload
 
-   ```xml
-   		<dependency>
-   			<groupId>redis.clients</groupId>
-   			<artifactId>jedis</artifactId>
-   			<version>4.3.1</version>
-   		</dependency>
-   ```
+```xml
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+```
 
-   
+
 
 4. 创建一个Condition类，用于构建conditional注解的条件。
 
-   ```java
-   package com.cetacean.condition;
-   
-   import org.springframework.context.annotation.Condition;
-   import org.springframework.context.annotation.ConditionContext;
-   import org.springframework.core.type.AnnotatedTypeMetadata;
-   
-   public class ClassCondition implements Condition {
-       @Override
-       public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-           // Check whether redis.clients.jedis.Jedis.class file exists.
-           boolean flag = true;
-           try {
-             	// 1. load in bytecode file of jedis.
-               Class<?> cls = Class.forName("redis.clients.jedis.Jedis");
-           } catch (ClassNotFoundException e) {
-             	// 2. If you cannot find the file, change flag to false.
-               flag = false;
-           }
-         	// 3. return flag as result.
-           return flag;
-       }
-   }
-   
-   ```
+```java
+package com.cetacean.condition;
 
-   - 当pom.xml中没有导入Jedis依赖时，运行main程序会报错：`no user bean...`
-   - 反之，运行成功，并且答应user bean的信息。
+import org.springframework.context.annotation.Condition;
+import org.springframework.context.annotation.ConditionContext;
+import org.springframework.core.type.AnnotatedTypeMetadata;
+
+public class ClassCondition implements Condition {
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+        // Check whether redis.clients.jedis.Jedis.class file exists.
+        boolean flag = true;
+        try {
+          	// 1. load in bytecode file of jedis.
+            Class<?> cls = Class.forName("redis.clients.jedis.Jedis");
+        } catch (ClassNotFoundException e) {
+          	// 2. If you cannot find the file, change flag to false.
+            flag = false;
+        }
+      	// 3. return flag as result.
+        return flag;
+    }
+}
+
+```
+
+- 当pom.xml中没有导入Jedis依赖时，运行main程序会报错：`no user bean...`
+- 反之，运行成功，并且答应user bean的信息。
 
 
 
-##### 实现 需求2
+##### **实现 需求2**
 
 1. 创建ClassOnCondition注解，将字节码文件类型作为注解的参数。
 
@@ -158,47 +158,50 @@
 
 3. 修改ClassConditon方法
 
-   ***==Condition接口的 matches 方法==***
 
-   ```java
-   boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
-   ```
+##### ***==Condition接口的 matches 方法==***
 
-   - context:  上下问对象。用于获取环境，IOC容器，ClassLoader对象。
-   - metadata: 注解的元对象。用于获取注解定义的属性值。
+```java
+boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata);
+```
 
-   ```java
-   package com.cetacean.condition;
-   
-   public class ClassCondition implements Condition {
-       /**
-        *
-        * @param context 上下文对象。用于获取环境，IOC容器，ClassLoader对象。
-        * @param metadata 注解的元对象。用于获取注解定义的属性值。
-        * @return
-        */
-       @Override
-       public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-           // Check whether specific bytecode file exists.
-           // 1. Get annotation property value: value
-           Map<String, Object> map = metadata.getAnnotationAttributes(ConditionOnClass.class.getName());
-         // 2. Get all values from map
-           String[] value = (String[]) map.get("value");
-           boolean flag = true;
-           try {
-             // 3. Check if all className exits
-               for (String className : value) {
-                   Class<?> cls = Class.forName(className);
-               }
-           } catch (ClassNotFoundException e) {
-               flag = false;
-           }
-           // 3. return flag as result.
-           return flag;
-   
-       }
-   }
-   ```
+- context:  上下问对象。用于获取环境，IOC容器，ClassLoader对象。
+- metadata: 注解的元对象。用于获取注解定义的属性值。
+
+```java
+package com.cetacean.condition;
+
+public class ClassCondition implements Condition {
+    /**
+     *
+     * @param context 上下文对象。用于获取环境，IOC容器，ClassLoader对象。
+     * @param metadata 注解的元对象。用于获取注解定义的属性值。
+     * @return
+     */
+    @Override
+    public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
+        // Check whether specific bytecode file exists.
+        // 1. Get annotation property value: value
+        Map<String, Object> map = metadata.getAnnotationAttributes(ConditionOnClass.class.getName());
+      // 2. Get all values from map
+        String[] value = (String[]) map.get("value");
+        boolean flag = true;
+        try {
+          // 3. Check if all className exits
+            for (String className : value) {
+                Class<?> cls = Class.forName(className);
+            }
+        } catch (ClassNotFoundException e) {
+            flag = false;
+        }
+        // 3. return flag as result.
+        return flag;
+
+    }
+}
+```
+
+
 
 ##### 小结
 
@@ -226,7 +229,7 @@ SpringBoot的web环境中默认使用tomcat作为内置服务器，并提供四�
 > - Tomcat服务器 TomcatWebServerFactoryCustomizer
 > - Undertow服务器 UndertowWebServerFactoryCustomizer
 
-**实现**
+##### **实现**
 
 1. 排除tomcat的默认依赖。
 
@@ -260,9 +263,294 @@ SpringBoot的web环境中默认使用tomcat作为内置服务器，并提供四�
    		</dependency>
    ```
 
-#### III. @Enable* 注解
+
+
+#### III. ==@Enable*== 注解
 
 SpringBoot中提供了多个Enable开头的注解，用于动态启动某些功能。其底层原理是使用@Import注解导入配置类，实现Bean的动态加载。
+
+> SpringBoot 不能直接获取其他模块里定义的Bean。
+
+##### **错误案例**
+
+- 创建springboot-enable 和 springboot-enable-other 两个模块。
+
+- 在springboot-enable-other模块中，添加两个文件。
+
+  ```java
+  // Config File
+  package com.cetacean.config;
+  
+  import com.cetacean.domain.User;
+  import org.springframework.context.annotation.Bean;
+  import org.springframework.context.annotation.Configuration;
+  
+  @Configuration
+  public class UserConfig {
+  
+      @Bean
+      public User user(){
+          return new User();
+      }
+  }
+  
+  ```
+
+  ```java
+  // Bean File
+  package com.cetacean.domain;
+  
+  public class User {
+  }
+  
+  ```
+
+- 在springboot-enable模块的pom.xml文件中，添加springboot-enable-other的依赖
+
+  ```xml
+          <dependency>
+              <groupId>com.cetacean</groupId>
+              <artifactId>springboot-enable-other</artifactId>
+              <version>0.0.1-SNAPSHOT</version>
+          </dependency>
+  ```
+
+- 在spring-enable模块的主文件中，添加测试用例。
+
+  ```java
+  @SpringBootApplication
+  public class SpringbootEnableApplication {
+  
+      public static void main(String[] args) {
+          ConfigurableApplicationContext context = SpringApplication.run(SpringbootEnableApplication.class, args);
+  
+          // 1. Get Bean
+          Object user = context.getBean("user");
+          System.out.println(user);
+      }
+  }
+  
+  //RUN ERROR
+  //Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'user' available
+  ```
+
+
+
+
+##### ==*@ComponentScan*==
+
+扫描范围：当前引导类所在包及其子包
+
+
+
+##### 将第三方类的Bean加入当前类IOC
+
+1. 使用 @ComponentScan扫描com.cetacean.config（包的路径）包。
+
+   ```java
+   @SpringBootApplication
+   //导入springboot-enable-other包中config的路径
+   @ComponentScan("com.cetacean.config")	
+   public class SpringbootEnableApplication {
+     ...
+   }
+   ```
+
+   
+
+2. 使用@Import注解，加载类。这些类都会被Spring创建，并放入IOC容器。
+
+   ```java
+   @SpringBootApplication
+   // 导入UserConfig类
+   @Import(UserConfig.class)
+   public class SpringbootEnableApplication {
+     ...
+   }
+   ```
+
+   
+
+3. 对Import注解进行封装。
+
+   第三方库中对Import注解进行封装，如：在springboot-enable-other的config目录下新建`EnableUser`接口。
+
+   ```java
+   package com.cetacean.config;
+   
+   import org.springframework.context.annotation.Import;
+   
+   import java.lang.annotation.*;
+   
+   @Target(ElementType.TYPE)
+   @Retention(RetentionPolicy.RUNTIME)
+   @Documented
+   @Import(UserConfig.class)		// 导入对应类
+   public @interface EnableUser {
+   }
+   ```
+
+   使用注解。
+
+   ```java
+   @SpringBootApplication
+   @EnableUser
+   public class SpringbootEnableApplication {
+     ...
+   }
+   ```
+
+#### IV.==@Import==注解
+
+@Enable*底层依赖于@Import注解导入一些类，使用@Import导入的类会被Spring加载到IOC容器中。@Import提供4种用法：
+
+- 导入Bean
+- 导入配置类
+- 导入ImportSelector实现类。一般用于加载配置文件中的类。
+- 导入ImportBeanDefinitionRegistrar实现类
+
+
+
+##### 导入Bean
+
+```java
+@SpringBootApplication
+// Import Bean
+@Import(User.class)
+public class SpringbootEnableApplication {
+
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(SpringbootEnableApplication.class, args);
+
+        // 0. Get Bean (NOT USEFUL, AS NAME MAY NOT BE USER)
+        // Object user = context.getBean("user");
+        // System.out.println(user);
+        
+        // 1. Use Bean Class to get Bean. As the name may not be user.
+        User bean = context.getBean(User.class);
+        System.out.println(bean);
+
+        // 2. To get all key-value of User Bean.
+        Map<String, User> beansOfType = context.getBeansOfType(User.class);
+        System.out.println(beansOfType);
+    }
+}
+```
+
+
+
+##### 导入配置类
+
+被导入的配置类上的@Configuration注解可以不加。
+
+```java
+package com.cetacean.config;
+
+// When use import configuration class, this annotation on Config class can be removed.
+//@Configuration
+public class UserConfig {
+
+    @Bean
+    public User user(){
+        return new User();
+    }
+}
+
+```
+
+导入配置类
+
+```java
+package com.cetacean.springbootenable;
+
+@SpringBootApplication
+// Import config class
+@Import(UserConfig.class)
+public class SpringbootEnableApplication {
+
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication.run(SpringbootEnableApplication.class, args);
+
+        User bean = context.getBean(User.class);
+        System.out.println(bean);
+    }
+}
+```
+
+
+
+##### 导入ImportSelector实现类
+
+创建ImportSelector的实现类，可以将导入的包写在配置文件中，通过代码动态导入。
+
+```java
+package com.cetacean.config;
+
+import org.springframework.context.annotation.ImportSelector;
+import org.springframework.core.type.AnnotationMetadata;
+
+public class MyImportSelector implements ImportSelector {
+  //复写导入包的方法。
+    @Override
+    public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+        return new String[]{"com.cetacean.domain.User","com.cetacean.domain.Role"};
+    }
+}
+
+```
+
+应用
+
+```java
+package com.cetacean.springbootenable;
+
+@SpringBootApplication
+// Import ImportSelect class
+@Import(MyImportSelector.class)
+public class SpringbootEnableApplication {
+  ... // Same as above
+}
+```
+
+
+
+##### 导入ImportBeanDefinitionRegistrar实现类
+
+创建MyImportBeanDefinitionRegistrar类
+
+```java
+package com.cetacean.config;
+
+public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
+    @Override
+    public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry, BeanNameGenerator importBeanNameGenerator) {
+        AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.rootBeanDefinition(User.class).getBeanDefinition();
+        registry.registerBeanDefinition("user",beanDefinition);
+    }
+}
+
+```
+
+应用
+
+```java
+package com.cetacean.springbootenable;
+
+@SpringBootApplication
+// Import ImportBeanDefinitionRegistrar class
+@Import(MyImportBeanDefinitionRegistrar.class)
+public class SpringbootEnableApplication {
+  ... // Same as above
+}
+```
+
+
+
+#### V. ==@EnableAutoConfiguration== 注解
+
+- `@EnableAutoConfiguration`注解内部使用`@Import(AutoConfigurationImportSelector.class)`来加载配置类。
+- 配置文件：`META_INF/spring.factories`， 改配置文件中定义了大量的配置类。当Springboot应用启动时，会自动加载这些配置类，并初始化Bean。
+- 但并非所有的Bean都会被初始化，在配置类中使用Condition来加载满足条件的Bean。
 
 
 
