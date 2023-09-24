@@ -10,10 +10,10 @@
 
 ##### **案例**
 
-> 在Spring的IOC容器中有一个User的Bean，现要求：
->
-> 1. 导入Jedis坐标后，加载该Bean；没导入，则不加载。
-> 2. 将类的判断定义改为动态的。判断哪个字节码文件，使用动态指定。
+在Spring的IOC容器中有一个User的Bean，现要求：
+
+1. 导入Jedis坐标后，加载该Bean；没导入，则不加载。
+2. 将类的判断定义改为动态的。判断哪个字节码文件，使用动态指定。
 
 ##### **实现 需求1**
 
@@ -265,7 +265,7 @@ SpringBoot的web环境中默认使用tomcat作为内置服务器，并提供四�
 
 
 
-#### III. ==@Enable*== 注解
+#### III. @Enable*注解
 
 SpringBoot中提供了多个Enable开头的注解，用于动态启动某些功能。其底层原理是使用@Import注解导入配置类，实现Bean的动态加载。
 
@@ -337,7 +337,7 @@ SpringBoot中提供了多个Enable开头的注解，用于动态启动某些功�
 
 
 
-##### ==*@ComponentScan*==
+##### *@ComponentScan*
 
 扫描范围：当前引导类所在包及其子包
 
@@ -400,7 +400,7 @@ SpringBoot中提供了多个Enable开头的注解，用于动态启动某些功�
    }
    ```
 
-#### IV.==@Import==注解
+#### IV.@Import注解
 
 @Enable*底层依赖于@Import注解导入一些类，使用@Import导入的类会被Spring加载到IOC容器中。@Import提供4种用法：
 
@@ -484,6 +484,7 @@ public class SpringbootEnableApplication {
 创建ImportSelector的实现类，可以将导入的包写在配置文件中，通过代码动态导入。
 
 ```java
+// MyImportSelect.java
 package com.cetacean.config;
 
 import org.springframework.context.annotation.ImportSelector;
@@ -546,11 +547,159 @@ public class SpringbootEnableApplication {
 
 
 
-#### V. ==@EnableAutoConfiguration== 注解
+#### V. @EnableAutoConfiguration 注解
 
 - `@EnableAutoConfiguration`注解内部使用`@Import(AutoConfigurationImportSelector.class)`来加载配置类。
 - 配置文件：`META_INF/spring.factories`， 改配置文件中定义了大量的配置类。当Springboot应用启动时，会自动加载这些配置类，并初始化Bean。
 - 但并非所有的Bean都会被初始化，在配置类中使用Condition来加载满足条件的Bean。
+
+
+
+#### VI. SpringBoot 自动配置 案例
+
+##### 案例
+
+​	自定义redis-starter。要求当导入redis坐标时，Spring Boot自动创建Jedis的Bean。
+
+##### 步骤
+
+- 创建 redis-spring-boot-autoconfigure 模块
+- 创建 redis-spring-boot-starter 模块，依赖 redis-spring-boot-autoconfigure 的模块
+- 在 redid-spring-boot-autoconfigure 模块中初始化Jedis的Bean。并定义META- INF/spring.factories文件
+- 在测试模块中引入自定义的redis-starter 依赖，测试获取Jedis的Bean，操作redis
+
+##### 实现
+
+- 创建redis-spring-boot-autoconfigure模块和  redis-spring-boot-starter，让starter模块依赖autoconfigure模块。
+
+  清除不要的目录结构，仅保留src 和 pom.xml 文件。同时，删除main文件的启动类，test文件的测试类。
+
+```xml
+//redis-spring-boot-starter/pom.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="..." xmlns:xsi="..."  xsi:schemaLocation="...">
+  	<!-- Omit Basic configs ...-->
+  
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+      
+        <!-- Import configure-->
+        <dependency>
+            <groupId>com.cetacean</groupId>
+            <artifactId>redis-spring-boot-autoconfigure</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+</project>
+```
+
+```xml
+//redis-spring-boot-starter/pom.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="..." xmlns:xsi="..."  xsi:schemaLocation="...">
+  	<!-- Omit Basic configs ...-->
+  
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- Import Jedis Dependency -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+```
+
+- 在 redid-spring-boot-autoconfigure 模块中初始化Jedis的Bean。并定义META- INF/spring.factories文件
+
+```java
+// RedisAutoConfiguration
+package com.cetacean.redis.config;
+
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import redis.clients.jedis.Jedis;
+
+@Configuration
+@EnableConfigurationProperties(RedisProperties.class)
+public class RedisAutoConfiguration {
+
+    /* Return Jedis Bean */
+    @Bean
+    public Jedis jedis(RedisProperties redisProperties){
+        return new Jedis(redisProperties.getHost(),redisProperties.getPort());
+    }
+}
+
+```
+
+
+
+```java
+// RedisProperties
+package com.cetacean.redis.config;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
+@ConfigurationProperties(prefix = "redis")
+public class RedisProperties {
+    private String host = "localhost";
+    private int port = 6379;
+
+    public String getHost() {
+        return host;
+    }
+
+    public void setHost(String host) {
+        this.host = host;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int  port) {
+        this.port = port;
+    }
+}
+```
+
+
+
+```java
+// resouces/META-INF/spring.factories
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.cetacean.redis.config.RedisAutoConfiguration
+```
+
+- spring-boot-enable里面增加redid-spring-boot-starter的依赖
+
+```xml
+    <!-- Self-defined spring starter -->
+    <dependency>
+        <groupId>com.cetacean</groupId>
+        <artifactId>redis-spring-boot-starter</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
