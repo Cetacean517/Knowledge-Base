@@ -100,7 +100,7 @@ export default router
 
 
 
-### 2.2 几个注意事项
+### 2.2. 几个注意事项
 
 1. 前端组件可以分为：路由组件和一般组件
 
@@ -152,9 +152,210 @@ routes:[
 <router-link to="/home/news"> News <router-link>
 ```
 
+## 4. 路由的query参数
+
+1. 传递参数
+
+```vue
+<!-- 跳转并携带query参数，to的字符串写法 -->
+<router-link :to="`/home/message/detail?id=${m.id}&title=${m.title}`">{{ m.title }}</router-link>
+
+<!-- 跳转并携带query参数，to的对象写法 -->
+<router-link :to="{
+    path:'/home/message/detail',
+    query:{
+        id: m.id,
+        title: m.title
+    }
+}">
+      {{ m.title }}
+</router-link>
+```
+
+2. 接收参数
+
+```vue
+$route.query.id
+$route.query.title
+```
+
+## 5. 命名路由
+
+1. 作用：简化路由的跳转。
+
+2. 如何使用
+
+   1. 给路由命名。
+
+   ```json
+   {
+     path:'/demo',
+     component: Demo,
+     children: [
+       {
+         path: 'test',
+         component: Test,
+         children: [
+           {
+             name: 'hello'		//给路由命名
+             path: 'welcome',
+             component: Hello,
+           }
+         ]
+       }
+     ]
+   }
+   ```
+
+   2. 简化跳转
+
+   ```vue
+   <!-- 简化前，需要写完整的路径 -->
+   <router-link to="/demo/test/welcome">跳转</router-link>
+   
+   <!-- 简化后，直接通过名字跳转 -->
+   <router-link to="{name:'hello'}">跳转</router-link>
+   
+   <!-- 简化写法配合传递参数 -->
+   <router-link
+          :to="{
+               name:'hello',
+               query:{
+               		id: 666,
+               		title: '你好'
+               	}
+               }"
+   >跳转</router-link>
+   ```
+
+   ## 6.路由的Params参数
+
+   1. 配置路由，声明接受params参数
+
+   ```json
+   {
+       path:'/home',
+       component:Home,
+       children: [
+           {
+               path: 'news',
+               component: News
+           },
+           {
+               path:'message',
+               component: Message,
+               children:[
+                   {
+                       name:'DetailName',
+                       path:'detail/:id/:title',//使用占位符声明接受params参数
+                       component: Detail
+                   }
+               ]
+           }
+         ]
+   }
+   }
+   ```
+
+   2. 传递参数
+
+   ```vue
+   <!-- 跳转并携带params参数，to的字符串写法 -->
+   <router-link :to="/home/message/${m.id}/${m.title}/你好">跳转</router-link>
+   
+   <!-- 跳转并携带params参数，to的对象写法 -->
+   <router-link
+                :to="{
+                     name:'DetailName',		// path配置项不可用
+                     params:{
+                     	id:m.id,
+                     	title:m.title
+                     }
+                     }"
+                >跳转</router-link>
+   ```
+
+   > ⚠️特别注意：路由携带params参数时，若使用to的对象写法，则不能使用path配置项，必须使用name配置！！
+
+3. 接收参数
+
+   ```js
+   $route.query.id
+   $route.query.title
+   ```
 
 
 
+## 7. 路由的props参数
+
+1. 作用：让路由组件更方便的收到参数
+
+2. router.js配置内容
+
+   1. 第一种写法：props值为对象，改对象中所有的key-value的组合最终都会通过props传给Detail组件
+
+      ```js
+      {
+        name:'DetailName',
+        path:'detail',
+        component: Detail,
+        
+        // 第一种写法：props值为对象，改对象中所有的key-value的组合最终都会通过props传给Detail组件
+        props:{a:900}
+      }
+      ```
+
+   2. 第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
+
+      ```js
+      {
+        name:'DetailName',
+        path:'detail/:id',
+        component: Detail,
+        
+        // 第二种写法：props值为布尔值，布尔值为true，则把路由收到的所有params参数通过props传给Detail组件
+        props:true
+      }
+      ```
+
+   3. 第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件。
+
+      ```js
+      {
+        name:'DetailName',
+        path:'detail/:id',
+        component: Detail,
+        
+        // 第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
+        props($route){
+          return {
+          	id:route.query.id,
+          	title:route.query.title
+        	}
+        }
+      }
+      ```
+
+      
+
+3. 接收参数
+
+   ```vue
+   <template>
+   	<ul>
+       <li>ID: {{id}}</li>
+       <li>TITLE: {{title}}</li>
+     </ul>
+   </template>
+   
+   <script>
+   	export default{
+       props:['id','title']
+     }
+   </script>
+   ```
+
+   
 
 
 
