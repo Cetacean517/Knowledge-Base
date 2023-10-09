@@ -323,7 +323,7 @@ $route.query.title
       ```js
       {
         name:'DetailName',
-        path:'detail/:id',
+        path:'detail',
         component: Detail,
         
         // 第三种写法：props值为函数，该函数返回的对象中每一组key-value都会通过props传给Detail组件
@@ -355,7 +355,25 @@ $route.query.title
    </script>
    ```
 
+   ## 8.`<ROUTER-LINK>`的replace属性
    
+   1. 作用：控制路由跳转时操作浏览器历史记录的模式。
+   
+   2. 浏览器的历史记录有两种写入方式：分别是`push`和`replace`。
+   
+      - `push`：追加历史记录。
+   
+      - `replace`：替换**当前**记录。(即栈顶记录，路由回退的过程类似出入栈。)
+   
+      路由跳转时候默认为`push`。
+   
+   3. 如何开启`replace`模式：`<router-link replace ... ...>News</router-link>`
+
+
+
+## 9. 编程式路由导航
+
+
 
 
 

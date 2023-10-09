@@ -506,7 +506,7 @@ diff --git a/readme.txt b/readme.txt
 
 
 # 指令小结
-```java
+```bash
 //命令行指令总结
 //create a repository
 $ mkdir <file>                创建一个文件
@@ -609,5 +609,13 @@ git push origin new-branch
 git push origin --delete old-branch
 git branch --set-upstream-to origin/cmaster_front cmaster_front
 
+// 关于绑定的远程仓库地址的操作
+// 查看所有分支
+ git branch -r
+ git remote remove <repo-name:origin>
+ git remote add new-origin new-remote-url
+ 
+ // 查看默认拉取设置
+ git branch -vv
 ```
 
