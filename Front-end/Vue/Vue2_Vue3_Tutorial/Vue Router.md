@@ -373,7 +373,50 @@ $route.query.title
 
 ## 9. 编程式路由导航
 
+1. 作用：不借助`<router-link>`实现路由跳转，让路由跳转更加灵活。
 
+2. 具体编码
+
+```js
+// $router的两个API
+this.$router.push({
+	name: 'Detail',
+  params:{
+    id:m.id,
+    title:m.title
+  }
+})
+
+this.$router.replace({
+	name: 'Detail',
+  params:{
+    id:m.id,
+    title:m.title
+  }
+})
+
+// 前进
+this.$router.forward()
+
+// 后退
+this.$router.back()
+
+// 前进or后退，前进用x, 后退用-x,
+this.$router.go()
+```
+
+# 10.缓存路由组件
+
+1. 作用：让不展示的路由组件保持挂载，不被销毁。
+2. 具体编码
+   - 在内容的展示区包裹keep-alive组件。
+   - 不加include默认所有内容，增加之后指定组件名。
+
+```vue
+<keep-alive include="News">
+	<router-view></router-view>
+</keep-alive>
+```
 
 
 
