@@ -405,7 +405,7 @@ this.$router.back()
 this.$router.go()
 ```
 
-# 10.缓存路由组件
+## 10.缓存路由组件
 
 1. 作用：让不展示的路由组件保持挂载，不被销毁。
 2. 具体编码
@@ -413,12 +413,23 @@ this.$router.go()
    - 不加include默认所有内容，增加之后指定组件名。
 
 ```vue
+<!-- 缓存一个路由组件 -->
 <keep-alive include="News">
 	<router-view></router-view>
 </keep-alive>
+
+<!-- 缓存多个路由组件 -->
+<keep-alive :include="['News','Message']"></keep-alive>
 ```
 
 
 
+## 11. 两个新的生命周期钩子
 
+1. 作用：路由组件独有的两个钩子，用于捕获路由组件的激活状态。
+2. 具体名字
+   1. `activated`	 路由组件被激活时触发。
+   2. `deactivated`    路由组件失活时触发。
+
+## 12. 路由守卫
 
