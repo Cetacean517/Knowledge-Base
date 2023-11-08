@@ -534,6 +534,9 @@ $ git diff HEAD -- <file>
 $ git checkout -- <file>
 $ git reset HEAD <file>
 
+//撤回已提交的commit
+$ git revert <branch_name/版本号>
+
 //删除文件
 $ git rm <file>
 $ git checkout -- <file>
@@ -575,6 +578,7 @@ $ git branch -D <branchname>
 // 多人协作
 $ git remote
 $ git remote -v
+$ git remote rm origin     // 删除远程仓库地址
 $ git push origin <branchname>
 $ git checkout -b branch-name origin/branch-name
 $ git pull

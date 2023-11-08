@@ -152,6 +152,8 @@ routes:[
 <router-link to="/home/news"> News <router-link>
 ```
 
+
+
 ## 4. 路由的query参数
 
 1. 传递参数
@@ -178,6 +180,8 @@ routes:[
 $route.query.id
 $route.query.title
 ```
+
+
 
 ## 5. 命名路由
 
@@ -227,6 +231,8 @@ $route.query.title
                }"
    >跳转</router-link>
    ```
+
+   
 
    ## 6.路由的Params参数
 
@@ -355,19 +361,22 @@ $route.query.title
    </script>
    ```
 
-   ## 8.`<ROUTER-LINK>`的replace属性
-   
-   1. 作用：控制路由跳转时操作浏览器历史记录的模式。
-   
-   2. 浏览器的历史记录有两种写入方式：分别是`push`和`replace`。
-   
-      - `push`：追加历史记录。
-   
-      - `replace`：替换**当前**记录。(即栈顶记录，路由回退的过程类似出入栈。)
-   
-      路由跳转时候默认为`push`。
-   
-   3. 如何开启`replace`模式：`<router-link replace ... ...>News</router-link>`
+
+
+
+## 8.`<ROUTER-LINK>`的replace属性
+
+1. 作用：控制路由跳转时操作浏览器历史记录的模式。
+
+2. 浏览器的历史记录有两种写入方式：分别是`push`和`replace`。
+
+   - `push`：追加历史记录。
+
+   - `replace`：替换**当前**记录。(即栈顶记录，路由回退的过程类似出入栈。)
+
+   路由跳转时候默认为`push`。
+
+3. 如何开启`replace`模式：`<router-link replace ... ...>News</router-link>`
 
 
 
@@ -405,7 +414,9 @@ this.$router.back()
 this.$router.go()
 ```
 
-# 10.缓存路由组件
+
+
+## 10.缓存路由组件
 
 1. 作用：让不展示的路由组件保持挂载，不被销毁。
 2. 具体编码
@@ -413,12 +424,133 @@ this.$router.go()
    - 不加include默认所有内容，增加之后指定组件名。
 
 ```vue
+<!-- 缓存一个路由组件 -->
 <keep-alive include="News">
+	<router-view></router-view>
+</keep-alive>
+
+<!-- 缓存多个路由组件 -->
+<keep-alive include="['News','Message']">
 	<router-view></router-view>
 </keep-alive>
 ```
 
 
+
+## 11. 两个新的生命周期钩子
+
+1. 作用：路由组件独有的两个钩子，用于捕获路由组件的激活状态。
+2. 具体名字
+   1. activated 	路由组件被激活时触发
+   2. deactivated    路由组件失活时触发
+
+```vue
+activated(){
+	// ...
+}
+deactivated(){
+	// ...
+}
+```
+
+
+
+## 12. 路由守卫
+
+1. 作用：对路由进行权限控制。
+2. 分类：全局守卫，独享守卫，组件内守卫
+
+### 12.1 全局守卫
+
+#### a. 前置路由守卫
+
+案例1：判断localStorage里面school =atguigu, 才显示News 和Messages的内容。
+
+```js
+//router.js
+// 全局前置路由守卫 --- 初始化的时候被调用、每次路由切换之前被调用
+router.beforeEach((to, from, next)=>{
+  // console.log(to,from)
+  if(to.path === '/home/news' || to.path === '/home/message'){ //权限控制规则
+    if(localStorage.getItem('school' === 'atguigu')){
+      next()
+    }else{
+      alert('name error, don not have auth to check it.')
+    }
+  }else{
+    next()
+  }
+})
+
+export default router
+```
+
+#### b. meta配置项
+
+案例2：优化多个权限校验，使用meta配置项，添加元数据。
+
+ ```js
+ //router.js
+ const router = new VueRouter({
+   routes:[
+ 		// ...
+     {
+       name:'zhuye',
+       path:'/home',
+       component:Home,
+       meta: {isAuth: true}
+     }
+   ]
+ })
+ 
+ router.beforeEach((to, from, next)=>{
+   if(to.meta.isAuth){	//判断是否需要鉴权
+     if(localStorage.getItem('school' === 'atguigu')){	//权限控制规则
+       next() //放行
+     }else{
+       alert('name error, don not have auth to check it.')
+     }
+   }else{
+     next() //放行
+   }
+ })
+ 
+ export default router
+ ```
+
+#### c. 后置路由守卫
+
+案例：进入新页面后，替换页签的名字，内容是meta.title.
+
+```js
+//router.js
+const router = new VueRouter({
+  routes:[
+    {
+      name:'guanyu',
+      path:'/about',
+      component:About,
+      meta:{title:'about'}	//配置title
+    },
+    {
+      name:'zhuye',
+      path:'/home',
+      component:Home,
+      meta: {isAuth: true, title:'home'}
+    },
+    //...
+  ]
+})
+
+// 全局后置路由守卫 --- 初始化的时候被调用、每次路由切换之后被调用
+router.afterEach((to, from)=>{
+  if(to.meta.title){
+      document.title = to.meta.title 	//修改放夜title
+  }else{
+    document.title = 'vue_test'
+  }
+})
+```
 
 
 
