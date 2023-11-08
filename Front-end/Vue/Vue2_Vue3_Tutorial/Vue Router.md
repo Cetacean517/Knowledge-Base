@@ -414,8 +414,11 @@ this.$router.back()
 this.$router.go()
 ```
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0c19d0a5c71ad8b16a3636e6d0cf1924357cdc67
 ## 10.缓存路由组件
 
 1. 作用：让不展示的路由组件保持挂载，不被销毁。
@@ -430,14 +433,19 @@ this.$router.go()
 </keep-alive>
 
 <!-- 缓存多个路由组件 -->
+<<<<<<< HEAD
 <keep-alive include="['News','Message']">
 	<router-view></router-view>
 </keep-alive>
+=======
+<keep-alive :include="['News','Message']"></keep-alive>
+>>>>>>> 0c19d0a5c71ad8b16a3636e6d0cf1924357cdc67
 ```
 
 
 
 ## 11. 两个新的生命周期钩子
+<<<<<<< HEAD
 
 1. 作用：路由组件独有的两个钩子，用于捕获路由组件的激活状态。
 2. 具体名字
@@ -552,5 +560,13 @@ router.afterEach((to, from)=>{
 })
 ```
 
+=======
+>>>>>>> 0c19d0a5c71ad8b16a3636e6d0cf1924357cdc67
 
+1. 作用：路由组件独有的两个钩子，用于捕获路由组件的激活状态。
+2. 具体名字
+   1. `activated`	 路由组件被激活时触发。
+   2. `deactivated`    路由组件失活时触发。
+
+## 12. 路由守卫
 
