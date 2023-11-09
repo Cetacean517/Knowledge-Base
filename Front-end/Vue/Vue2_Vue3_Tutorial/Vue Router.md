@@ -480,7 +480,7 @@ deactivated(){
 router.beforeEach((to, from, next)=>{
   // console.log(to,from)
   if(to.path === '/home/news' || to.path === '/home/message'){ //权限控制规则
-    if(localStorage.getItem('school' === 'atguigu')){
+    if(localStorage.getItem('school') === 'atguigu'){
       next()
     }else{
       alert('name error, don not have auth to check it.')
@@ -513,7 +513,7 @@ export default router
  
  router.beforeEach((to, from, next)=>{
    if(to.meta.isAuth){	//判断是否需要鉴权
-     if(localStorage.getItem('school' === 'atguigu')){	//权限控制规则
+     if(localStorage.getItem('school') === 'atguigu'){	//权限控制规则
        next() //放行
      }else{
        alert('name error, don not have auth to check it.')
@@ -559,3 +559,47 @@ router.afterEach((to, from)=>{
   }
 })
 ```
+
+### 12.2 独享路由守卫
+
+- 独享路由守卫只有前置，没有后置。
+
+```js
+beforeEnter(to, from, next){
+  console.log('beforeEnter', to, from)
+  if(to.meta.isAuth){	//判断当前路由是否需要进行权限控制
+    if(localStorage.getItem('school' === 'atguigu')){
+      next()
+    }else{
+      alert('暂无权限查看')
+    }
+  }else{
+    next()
+  }
+}
+```
+
+### 12.3 组件内路由守卫
+
+- `/home` ---- `/about` 
+  - 全局路由守卫：进入about之前调用`beforeEach`, 进入后调用`afterEach`
+  - 组件内路由守卫：通过路由规则进入about之前调用`beforeRouterEnter`， 离开时调用`beforeRouteLeave`
+- 通过路由规则进入
+  - 如果是通过组件引入，进入则不会调用。
+  - 需要通过router-link / 编程式路由进入才可以。
+
+```js
+// 进入守卫，通过路由规则，进入该组件时被调用
+beforeRouteEnter(to, from, next) {
+  // ...
+}
+
+// 离开守卫，通过路由规则，离开该组件时被调用
+beforeRouteLeave(to, from, next){
+	// ...
+}
+```
+
+
+
+## 13. history模式与hash模式
