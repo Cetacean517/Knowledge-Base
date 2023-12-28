@@ -1,4 +1,4 @@
-# Vue Router
+# Chapter 6 Vue Router
 
 ## 1. 相关理解
 
