@@ -144,3 +144,55 @@ vue 的差插值语法中可包含的内容：Vue实例中的所有内容
 ## 8. 计算属性与监视
 
 > 模板中如果使用到了data中的数据，如果数据改变一定会重新调取模板。
+
+### 8.1 计算属性
+
+1. 定义：要用的属性不存在，要通过已有属性（data中的数据）计算得来。
+
+2. 原理：底层借助了Object.defineproperty方法提供的getter和setter。
+
+3. get函数什么时候执行?
+
+   1. 初次读取时会执行一次。
+   2. 当依赖的数据发生改变时会被再次调用。
+
+4. 优势：与methods实现相比，内部有缓存机制（复用），效率更高，调试方便。
+
+5. 备注：
+
+   1. 计算属性最终会出现在vm上，直接读取使用即可。
+   2. 如果计算属性要被修改，那必须写set函数去响应修改，且set中要引起计算时依赖的数据发生改变。
+
+6. computed设有缓存机制。
+
+   > // e.g. 13-17行，第一次渲染页面的时候只会调用一次get方法。因为缓存的存在。
+
+7. 计算属性不在`vm._data` 上，它是通过data中的数据计算后直接放在`vue` 实例上的。
+
+<img src="./Notepic/image-20231229094136862.png" alt="image-20231229094136862" style="zoom:33%;" />
+
+```js
+//html
+//全名：<span>{{fullName}}</span><br/><br/>
+
+computed:{
+      fullName:{
+          // get有什么作用？当有人读取fullName时，get会被调用，且返回值作为fullName的值。
+          // computed设有缓存机制。
+          // get什么时候调用？1. 初次读取fullName时。2.所依赖的数据发生变化时。
+          // e.g. 13-17行，第一次渲染页面的时候只会调用一次get方法。因为缓存的存在。
+          get(){
+              // console.log("computed this", this)        // computed里get方法的this指向vm
+              return this.firstName + '-' + this.lastName
+          },
+          // get什么时候调用？当fullName被修改时
+          set(value){
+              console.log('set-',value)
+              const arr = value.split('-')
+              this.firstName = arr[0]
+              this.lastName = arr[1]
+          }
+      }
+  }
+```
+
